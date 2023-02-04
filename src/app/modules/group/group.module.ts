@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {IonicModule} from '@ionic/angular';
 
@@ -14,7 +14,8 @@ import {AddGroupComponent} from "./add-group/add-group.component";
     CommonModule,
     FormsModule,
     IonicModule,
-    GroupPageRoutingModule
+    GroupPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [GroupPage, AddGroupComponent]
 })

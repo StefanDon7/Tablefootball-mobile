@@ -5,13 +5,27 @@
         <ion-list id="inbox-list">
           <ion-list-header>Inbox</ion-list-header>
           <ion-note>hi@ionicframework.com</ion-note>
-
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
+          <ion-accordion-group>
+            <ion-item *ngFor="let item of items;">
+              <ion-accordion [value]="item.id">
+                <ion-item slot="header" color="light">
+                  <ion-label>{{item.name}}</ion-label>
+                  <ion-icon slot="start" [ios]="item.icon+'-outline'" [md]="item.icon+'-sharp'"></ion-icon>
+                </ion-item>
+                <div class="ion-padding" slot="content">
+                  <ion-menu-toggle auto-hide="false" *ngFor="let page of item.sideNavSectionElement; let i = index">
+                    <ion-item routerDirection="root" [routerLink]="[page.url]" lines="none" detail="false"
+                              routerLinkActive="selected">
+                      <ion-icon slot="start" [ios]="page.icon + '-outline'" [md]="page.icon + '-sharp'"></ion-icon>
+                      <ion-label>{{page.name }}</ion-label>
+                    </ion-item>
+                  </ion-menu-toggle>
+                </div>
+              </ion-accordion>
             </ion-item>
-          </ion-menu-toggle>
+
+          </ion-accordion-group>
+
         </ion-list>
       </ion-content>
     </ion-menu>

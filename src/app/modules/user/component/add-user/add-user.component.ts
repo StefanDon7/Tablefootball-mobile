@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Form, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserAddRequest} from "../../model/user";
 import {UserApiService} from "../../api/user-api-service";
 import {Store} from "@ngrx/store";
-import {AppState} from "../../../root-store/state";
+import {AppState} from "../../../../root-store/state";
 import {UserActions} from "../../index";
 import {selectedUser} from '../../store/selectors'
+import {Regex} from "../../../../shared/model/regex";
 
 @Component({
   selector: 'app-add-user',
@@ -18,11 +19,11 @@ export class AddUserComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private userApiService: UserApiService, private store$: Store<AppState>) {
     this.form = this.formBuilder.group({
-      username: [''],
-      firstname: [''],
-      lastname: [''],
-      email: [''],
-      password: [''],
+      username: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required, Validators.pattern(Regex.EMAIL)])],
+      password: ['', Validators.compose([Validators.required, Validators.pattern(Regex.PASSWORD)])],
     })
   }
 
@@ -34,17 +35,12 @@ export class AddUserComponent implements OnInit {
     const user = {
       ...this.form.getRawValue()
     } as UserAddRequest;
-    // this.userApiService.addUserRequest(user).subscribe(value => {
+    this.store$.dispatch(UserActions.addUser({user}));
+    // this.store$.select(selectedUser).subscribe(value => {
     //   if (value) {
     //     console.log(value);
     //   }
-    // });
-    this.store$.dispatch(UserActions.AddUser({user}));
-    this.store$.select(selectedUser).subscribe(value => {
-      if (value) {
-        console.log(value);
-      }
-    })
+    // })
   }
 
 

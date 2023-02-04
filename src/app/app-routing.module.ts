@@ -9,27 +9,27 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    loadChildren: () => import('./user/user.module').then( m => m.UserPageModule)
+    loadChildren: () => import('./modules/user/user.module').then(m => m.UserPageModule)
   },
   {
     path: 'group',
-    loadChildren: () => import('./group/group.module').then( m => m.GroupPageModule)
+    loadChildren: () => import('./modules/group/group.module').then(m => m.GroupPageModule)
   },
   {
     path: 'member',
-    loadChildren: () => import('./member/member.module').then( m => m.MemberPageModule)
+    loadChildren: () => import('./modules/member/member.module').then(m => m.MemberPageModule)
   },
   {
     path: 'player',
-    loadChildren: () => import('./player/player.module').then( m => m.PlayerPageModule)
+    loadChildren: () => import('./modules/player/player.module').then(m => m.PlayerPageModule)
   },
   {
     path: 'team',
-    loadChildren: () => import('./team/team.module').then( m => m.TeamPageModule)
+    loadChildren: () => import('./modules/team/team.module').then(m => m.TeamPageModule)
   },
   {
     path: 'match',
-    loadChildren: () => import('./match/match.module').then( m => m.MatchPageModule)
+    loadChildren: () => import('./modules/match/match.module').then(m => m.MatchPageModule)
   }
 ];
 

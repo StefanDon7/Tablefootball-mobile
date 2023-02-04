@@ -11,8 +11,10 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {StoreModule} from "@ngrx/store";
 import {reducers} from "./root-store/reducers";
 import {EffectsModule} from "@ngrx/effects";
-import {UserEffects} from "./user/store/effect";
-import {UserApiService} from "./user/api/user-api-service";
+import {UserEffects} from "./modules/user/store/effect";
+import {UserApiService} from "./modules/user/api/user-api-service";
+import {ReactiveFormsModule} from "@angular/forms";
+import {GroupPageModule} from "./modules/group/group.module";
 
 @NgModule({
   declarations:
@@ -23,13 +25,16 @@ import {UserApiService} from "./user/api/user-api-service";
   imports:
     [
       BrowserModule,
+      ReactiveFormsModule,
       IonicModule.forRoot(),
       AppRoutingModule,
       HttpClientModule,
       StoreModule.forRoot(reducers),
       EffectsModule.forRoot([UserEffects]),
-
     ],
+  exports: [
+    ReactiveFormsModule
+  ],
   providers: [UserApiService,
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],

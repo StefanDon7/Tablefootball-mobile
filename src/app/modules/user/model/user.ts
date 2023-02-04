@@ -11,3 +11,7 @@ export interface User {
   lastname: string,
   email: string,
 }
+export interface LoginUserRequest {
+  email: string,
+  password: string
+}

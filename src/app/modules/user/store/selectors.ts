@@ -1,6 +1,6 @@
 import {State} from "./state";
 import {createSelector, MemoizedSelector} from "@ngrx/store";
-import {AppState} from "../../root-store/state";
+import {AppState} from "../../../root-store/state";
 import {User} from "../model/user";
 
 export const getUsers = (state: State) => state?.users;

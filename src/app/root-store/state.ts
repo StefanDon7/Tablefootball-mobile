@@ -1,4 +1,4 @@
-import {State as UserState} from "../user/store/state";
+import {State as UserState} from "../modules/user/store/state";
 
 export interface AppState {
   user: UserState;
