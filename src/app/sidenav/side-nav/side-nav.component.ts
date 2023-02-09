@@ -8,35 +8,6 @@ import {SideNavSection} from "../model/side-nav";
 })
 export class SideNavComponent implements OnInit {
 
-  // items = [
-  //   {
-  //     id: 0, name: 'User',
-  //     pages:
-  //       [{title: 'User', url: '/user/add', icon: 'person'},
-  //         {title: 'Group', url: '/group/add', icon: 'heart'},
-  //         {title: 'Player', url: '/player/add', icon: 'archive'},
-  //         {title: 'Team', url: '/team/add', icon: 'trash'},
-  //         {title: 'Match', url: '/match/add', icon: 'warning'}]
-  //   },
-  //   {
-  //     id: 1, name: 'Group',
-  //     pages:
-  //       [{title: 'User', url: '/user/add', icon: 'person'},
-  //         {title: 'Group', url: '/group/add', icon: 'heart'},
-  //         {title: 'Player', url: '/player/add', icon: 'archive'},
-  //         {title: 'Team', url: '/team/add', icon: 'trash'},
-  //         {title: 'Match', url: '/match/add', icon: 'warning'}]
-  //   },
-  //   {
-  //     id: 2, name: 'Player',
-  //     pages:
-  //       [{title: 'User', url: '/user/add', icon: 'person'},
-  //         {title: 'Group', url: '/group/add', icon: 'heart'},
-  //         {title: 'Player', url: '/player/add', icon: 'archive'},
-  //         {title: 'Team', url: '/team/add', icon: 'trash'},
-  //         {title: 'Match', url: '/match/add', icon: 'warning'}]
-  //   },
-  // ]
   items: SideNavSection[] = [];
 
 
@@ -63,14 +34,14 @@ export class SideNavComponent implements OnInit {
         {name: 'Log out', icon: 'log-out', url: '/user/logout'},
       ]
     }),
-    this.items.push({
-      id: 1,
-      name: 'Group',
-      icon: 'people-circle',
-      sideNavSectionElement: [
-        {name: 'Add group', icon: 'people', url: '/group/add'}
-      ]
-    }),
+      this.items.push({
+        id: 1,
+        name: 'Group',
+        icon: 'people-circle',
+        sideNavSectionElement: [
+          {name: 'Add group', icon: 'people', url: '/group/add'}
+        ]
+      }),
       this.items.push({
         id: 2,
         name: 'Player',
