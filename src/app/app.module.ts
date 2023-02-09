@@ -15,6 +15,8 @@ import {UserEffects} from "./modules/user/store/effect";
 import {UserApiService} from "./modules/user/api/user-api-service";
 import {ReactiveFormsModule} from "@angular/forms";
 import {GroupPageModule} from "./modules/group/group.module";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {environment} from "../environments/environment";
 
 @NgModule({
   declarations:
@@ -30,7 +32,11 @@ import {GroupPageModule} from "./modules/group/group.module";
       AppRoutingModule,
       HttpClientModule,
       StoreModule.forRoot(reducers),
-      EffectsModule.forRoot([UserEffects]),
+      StoreDevtoolsModule.instrument({
+        maxAge: 25, // Retains last 25 states
+        logOnly: environment.production, // Restrict extension to log-only mode
+      }),
+      EffectsModule.forRoot([]),
     ],
   exports: [
     ReactiveFormsModule

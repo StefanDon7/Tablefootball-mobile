@@ -22,13 +22,15 @@
     "@ionic/angular": "^6.1.9",
     "@ngrx/effects": "~14.3.0",
     "@ngrx/store": "~14.3.0",
+    "@ngrx/store-devtools": "^15.2.1",
+    "@ngx-translate/core": "^13.0.0",
+    "ionicons": "^6.0.3",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
-    "ionicons": "^6.0.3",
+    "ngx-toastr": "^13.0.0",
+    "redux-observable": "^2.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
-    "ngx-toastr": "^13.0.0",
-    "@ngx-translate/core": "^13.0.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
