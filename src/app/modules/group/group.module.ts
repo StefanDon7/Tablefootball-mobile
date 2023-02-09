@@ -7,7 +7,11 @@ import {IonicModule} from '@ionic/angular';
 import {GroupPageRoutingModule} from './group-routing.module';
 
 import {GroupPage} from './group.page';
-import {AddGroupComponent} from "./add-group/add-group.component";
+import {AddGroupComponent} from "./components/add-group/add-group.component";
+import {EffectsModule} from "@ngrx/effects";
+import {StoreModule} from "@ngrx/store";
+import {GroupEffect} from "./store/effect";
+import {reducers} from "./store/reducer";
 
 @NgModule({
   imports: [
@@ -15,7 +19,9 @@ import {AddGroupComponent} from "./add-group/add-group.component";
     FormsModule,
     IonicModule,
     GroupPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EffectsModule.forFeature([GroupEffect]),
+    StoreModule.forFeature('group', reducers)
   ],
   declarations: [GroupPage, AddGroupComponent]
 })

@@ -12,7 +12,7 @@ export const selectFeature = (state: AppState): State => {
 };
 
 
-export const selectedUser: MemoizedSelector<AppState, User | undefined> = createSelector(selectFeature, s1 => {
+export const selectedAddedUser: MemoizedSelector<AppState, User | undefined> = createSelector(selectFeature, s1 => {
   return s1.addedUser;
 });
 export const selectLoginUser: MemoizedSelector<AppState, User | undefined> = createSelector(selectFeature, s1 => {

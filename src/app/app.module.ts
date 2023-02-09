@@ -17,6 +17,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {GroupPageModule} from "./modules/group/group.module";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {environment} from "../environments/environment";
+import {GroupApiService} from "./modules/group/api/group-api-service";
 
 @NgModule({
   declarations:
@@ -41,7 +42,7 @@ import {environment} from "../environments/environment";
   exports: [
     ReactiveFormsModule
   ],
-  providers: [UserApiService,
+  providers: [UserApiService, GroupApiService,
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],
 })

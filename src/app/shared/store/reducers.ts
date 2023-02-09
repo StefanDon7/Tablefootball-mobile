@@ -1,7 +1,6 @@
 import {INIT_USER_STATE, State} from "../../modules/user/store/state";
 import {Action, createReducer, on} from "@ngrx/store";
 import {cloneDeep} from "lodash-es";
-import {AddUserSuccess} from "../../modules/user/store/actions";
 
 const reducer = createReducer(
   cloneDeep(INIT_USER_STATE)

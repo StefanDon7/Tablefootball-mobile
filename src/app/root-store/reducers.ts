@@ -1,7 +1,9 @@
 import {ActionReducerMap} from "@ngrx/store";
 import {AppState} from "./state";
 import {reducers as userReducer} from '../modules/user/store/reducer';
+import {reducers as groupReducer} from '../modules/group/store/reducer';
 
 export const reducers: ActionReducerMap<AppState> = {
   user: userReducer,
+  group: groupReducer,
 }

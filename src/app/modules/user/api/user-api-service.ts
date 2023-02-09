@@ -22,7 +22,6 @@ export class UserApiService {
     return this.http.post<User>(this.USER_API + '/login', user)
   }
 
-
   getUserByUsername(username: string): Observable<User> {
     const user = {username} as User
     return this.http.post<User>(this.USER_API + '/get-by-username', user)
