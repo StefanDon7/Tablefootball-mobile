@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserApiService} from "../../api/user-api-service";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../../root-store/state";
-import {Regex} from "../../../../shared/model/regex";
+import {Regex} from "../../../shared/model/regex";
 import {UserAddRequest} from "../../model/user";
 import {UserActions} from "../../index";
+import {SharedActions} from "../../../shared";
 
 @Component({
   selector: 'app-login-user',
@@ -31,6 +32,7 @@ export class LoginUserComponent implements OnInit {
     const user = {
       ...this.form.getRawValue()
     } as UserAddRequest;
+    this.store$.dispatch(SharedActions.openSpinner());
     this.store$.dispatch(UserActions.loginUser({user}));
     // this.store$.select(selectedUser).subscribe(value => {
     //   if (value) {

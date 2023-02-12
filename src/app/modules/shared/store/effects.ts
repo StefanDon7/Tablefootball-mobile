@@ -1,19 +1,17 @@
 import {Injectable} from "@angular/core";
-import {UserApiService} from "../../modules/user/api/user-api-service";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {UserActions} from "../../modules/user";
-import {catchError, map, of, switchMap} from "rxjs";
+import {map,} from "rxjs";
 import {ESharedActions} from "../constant/actions";
 import {Router} from "@angular/router";
-import { ToastrService } from "ngx-toastr";
-import {TranslateService} from "@ngx-translate/core";
+import {ToastrService} from "ngx-toastr";
 
 @Injectable()
-export class UserEffects {
+export class SharedEffect {
+  private loading: any;
+
   constructor(private action$: Actions,
               private navigator: Router,
               private notificationMessages: ToastrService,
-              private translateService: TranslateService,
   ) {
   }
 

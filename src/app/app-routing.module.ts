@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'match',
     loadChildren: () => import('./modules/match/match.module').then(m => m.MatchPageModule)
+  },
+  {
+    path: 'shared',
+    loadChildren: () => import('./modules/shared/shared.module').then(m => m.SharedPageModule)
   }
 ];
 

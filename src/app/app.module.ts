@@ -18,6 +18,7 @@ import {GroupPageModule} from "./modules/group/group.module";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {environment} from "../environments/environment";
 import {GroupApiService} from "./modules/group/api/group-api-service";
+import {SharedPageModule} from "./modules/shared/shared.module";
 
 @NgModule({
   declarations:
@@ -38,6 +39,7 @@ import {GroupApiService} from "./modules/group/api/group-api-service";
         logOnly: environment.production, // Restrict extension to log-only mode
       }),
       EffectsModule.forRoot([]),
+      SharedPageModule,
     ],
   exports: [
     ReactiveFormsModule

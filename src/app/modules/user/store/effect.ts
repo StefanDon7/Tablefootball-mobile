@@ -4,7 +4,7 @@ import {Injectable} from "@angular/core";
 import {catchError, of, switchMap} from "rxjs";
 import {LoginUserRequest, UserAddRequest} from "../model/user";
 import {UserActions} from "../index";
-import {SharedActions} from "../../../shared";
+import {SharedActions} from "../../shared";
 
 @Injectable()
 export class UserEffects {
@@ -17,10 +17,12 @@ export class UserEffects {
     switchMap((data: { user: UserAddRequest }) => this.api.addUser(data.user).pipe(
       switchMap(user => of(
         UserActions.addUserSuccess({user}),
-        SharedActions.successMessages({messagesKey: 'gsadgds'})
+        SharedActions.successMessages({messagesKey: 'gsadgds'}),
+        SharedActions.closeSpinner(),
       )),
       catchError(error => of(
         UserActions.addUserError(error),
+        SharedActions.closeSpinner(),
       ))
     ))
   ));
@@ -30,10 +32,12 @@ export class UserEffects {
     switchMap((data: { user: LoginUserRequest }) => this.api.loginUser(data.user).pipe(
       switchMap(user => of(
         UserActions.loginUserSuccess({user}),
-        SharedActions.successMessages({messagesKey: 'gsadgds'})
+        SharedActions.successMessages({messagesKey: 'gsadgds'}),
+        SharedActions.closeSpinner(),
       )),
       catchError(error => of(
         UserActions.loginUserError(error),
+        SharedActions.closeSpinner(),
       ))
     ))
   ));

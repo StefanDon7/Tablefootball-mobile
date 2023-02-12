@@ -5,10 +5,12 @@ export const navigate = createAction(ESharedActions.NAVIGATE, props<{ url: strin
 
 export const successMessages = createAction(ESharedActions.SUCCESS_MESSAGES, props<{ messagesKey: string, extraMessage?: string }>());
 
-export const errorMessages = createAction(ESharedActions.ERROR_MESSAGES, props<{ messagesKey: string, extraMessage?: string,  }>());
+export const errorMessages = createAction(ESharedActions.ERROR_MESSAGES, props<{ messagesKey: string, extraMessage?: string, }>());
 
-const all = union({
+export const openSpinner = createAction(ESharedActions.OPEN_SPINNER);
 
-});
+export const closeSpinner = createAction(ESharedActions.CLOSE_SPINNER);
+
+const all = union({});
 
 export type SharedActions = typeof all;

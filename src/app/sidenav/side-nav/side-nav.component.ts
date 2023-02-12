@@ -1,21 +1,33 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SideNavSection} from "../model/side-nav";
+import {select, Store} from "@ngrx/store";
+import {AppState} from "../../root-store/state";
+import {selectLoginUser} from "../../modules/user/store/selectors";
+import {Subject, takeUntil} from "rxjs";
+import {User} from "../../modules/user/model/user";
 
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.scss'],
 })
-export class SideNavComponent implements OnInit {
+export class SideNavComponent implements OnInit, OnDestroy {
 
   items: SideNavSection[] = [];
+  user: User | undefined;
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
 
 
-  constructor() {
+  constructor(private store$: Store<AppState>) {
   }
 
   ngOnInit() {
-    this.populateSideNavElements();
+    this.select();
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.unsubscribe();
   }
 
 
@@ -33,7 +45,8 @@ export class SideNavComponent implements OnInit {
         {name: 'Log in', icon: 'log-in', url: '/user/login'},
         {name: 'Log out', icon: 'log-out', url: '/user/logout'},
       ]
-    }),
+    })
+    if (this.user) {
       this.items.push({
         id: 1,
         name: 'Group',
@@ -41,16 +54,29 @@ export class SideNavComponent implements OnInit {
         sideNavSectionElement: [
           {name: 'Add group', icon: 'people', url: '/group/add'}
         ]
-      }),
-      this.items.push({
-        id: 2,
-        name: 'Player',
-        icon: 'accessibility',
-        sideNavSectionElement: [
-          {name: 'Sign up', icon: 'person-add', url: '/user/add'},
-          {name: 'Log in', icon: 'log-in', url: '/user/login'},
-          {name: 'Log out', icon: 'log-out', url: '/user/logout'},
-        ]
       })
+    }
+
+    this.items.push({
+      id: 2,
+      name: 'Player',
+      icon: 'accessibility',
+      sideNavSectionElement: [
+        {name: 'Sign up', icon: 'person-add', url: '/user/add'},
+        {name: 'Log in', icon: 'log-in', url: '/user/login'},
+        {name: 'Log out', icon: 'log-out', url: '/user/logout'},
+      ]
+    })
   }
+
+  select(): void {
+    this.store$.pipe(select(selectLoginUser)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
+      if (value) {
+        this.user = value;
+        this.populateSideNavElements();
+      }
+    })
+  }
+
+
 }

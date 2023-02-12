@@ -2,7 +2,7 @@ import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {Injectable} from "@angular/core";
 import {GroupApiService} from "../api/group-api-service";
 import {catchError, of, switchMap} from "rxjs";
-import {SharedActions} from "../../../shared";
+import {SharedActions} from "../../shared";
 import {GroupActions} from "../index";
 import {GroupAddRequest} from "../model/group";
 
