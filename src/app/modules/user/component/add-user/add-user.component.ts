@@ -47,4 +47,8 @@ export class AddUserComponent implements OnInit, OnDestroy {
     })
     return form;
   }
+
+  logout() {
+    this.store$.dispatch(UserActions.logoutUser());
+  }
 }

@@ -11,6 +11,10 @@ export const openSpinner = createAction(ESharedActions.OPEN_SPINNER);
 
 export const closeSpinner = createAction(ESharedActions.CLOSE_SPINNER);
 
+export const openSpinnerAction = createAction(ESharedActions.OPEN_DELAYED_SPINNER, (delay: number = 1) => ({delay}));
+
+export const closeSpinnerAction = createAction(ESharedActions.CLOSE_DELAYED_SPINNER);
+
 const all = union({});
 
 export type SharedActions = typeof all;

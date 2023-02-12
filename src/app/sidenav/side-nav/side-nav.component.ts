@@ -1,5 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {SideNavSection} from "../model/side-nav";
+import {User} from "../../modules/user/model/user";
+import {Subject, takeUntil} from "rxjs";
+import {AppState} from "../../root-store/state";
+import {select, Store} from "@ngrx/store";
+import {selectLoginUser} from "../../modules/user/store/selectors";
+import {UserActions} from "../../modules/user";
 
 @Component({
   selector: 'app-side-nav',
@@ -9,13 +15,20 @@ import {SideNavSection} from "../model/side-nav";
 export class SideNavComponent implements OnInit {
 
   items: SideNavSection[] = [];
+  user: User | undefined;
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
 
 
-  constructor() {
+  constructor(private store$: Store<AppState>) {
   }
 
   ngOnInit() {
-    this.populateSideNavElements();
+    this.select();
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.unsubscribe();
   }
 
 
@@ -52,5 +65,20 @@ export class SideNavComponent implements OnInit {
           {name: 'Log out', icon: 'log-out', url: '/user/logout'},
         ]
       })
+  }
+
+  select(): void {
+    this.store$.pipe(select(selectLoginUser)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
+      if (value) {
+        this.user = value;
+        this.populateSideNavElements();
+      } else {
+        this.items = [];
+      }
+    })
+  }
+
+  logout() {
+    this.store$.dispatch(UserActions.logoutUser());
   }
 }

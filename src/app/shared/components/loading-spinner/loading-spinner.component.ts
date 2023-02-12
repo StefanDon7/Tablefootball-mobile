@@ -18,7 +18,7 @@ export class LoadingSpinnerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-      this.spinnerValue$= this.store$.select(selectSpinnerValue);
+    this.spinnerValue$ = this.store$.select(selectSpinnerValue);
   }
 
   ngOnDestroy(): void {

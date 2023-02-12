@@ -1,7 +1,7 @@
 import {Action, createReducer, on} from "@ngrx/store";
 import {cloneDeep} from 'lodash-es';
 import {INIT_USER_STATE, State} from "./state";
-import {addUserSuccess, loginUserSuccess} from './actions'
+import {addUserSuccess, loginUserSuccess, logoutUser} from './actions'
 
 const reducer = createReducer(
   cloneDeep(INIT_USER_STATE),
@@ -17,6 +17,10 @@ const reducer = createReducer(
       loginUser: user
     });
   }),
+  on(logoutUser, (state) => ({
+    ...state,
+    loginUser: undefined
+  })),
 )
 
 export function reducers(state: State | undefined, action: Action) {

@@ -19,7 +19,8 @@ export class LoginUserComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private userApiService: UserApiService, private store$: Store<AppState>) {
     this.form = this.formBuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.pattern(Regex.EMAIL)])],
+      email: ['', Validators.compose(
+        [Validators.required, Validators.pattern(Regex.EMAIL)])],
       password: ['', Validators.compose([Validators.required])],
     })
   }
@@ -34,11 +35,6 @@ export class LoginUserComponent implements OnInit {
     } as UserAddRequest;
     this.store$.dispatch(SharedActions.openSpinner());
     this.store$.dispatch(UserActions.loginUser({user}));
-    // this.store$.select(selectedUser).subscribe(value => {
-    //   if (value) {
-    //     console.log(value);
-    //   }
-    // })
   }
 
 

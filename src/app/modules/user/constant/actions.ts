@@ -7,4 +7,7 @@ export const enum EUserActions {
   LoginUserSuccess = '[User] Login User Success',
   LoginUserError = '[User] Login User Error',
 
+  LogoutUser = '[User] Logout User',
+  LogoutUserSuccess = '[User] Logout User Success',
+  LogoutUserError = '[User] Logout User Error',
 }

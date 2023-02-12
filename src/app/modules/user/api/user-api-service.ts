@@ -10,6 +10,7 @@ import {Observable} from "rxjs";
 export class UserApiService {
 
   readonly USER_API = `${environment.baseURI}/api/user`;
+  readonly radnomApi = `https://raw.githubusercontent.com/json-iterator/test-data/master/large-file.json`;
 
   constructor(private http: HttpClient) {
   }
@@ -22,9 +23,8 @@ export class UserApiService {
     return this.http.post<User>(this.USER_API + '/login', user)
   }
 
-  getUserByUsername(username: string): Observable<User> {
-    const user = {username} as User
-    return this.http.post<User>(this.USER_API + '/get-by-username', user)
+  dovuci(): Observable<any> {
+    return this.http.get<any>(this.radnomApi)
   }
 
 }

@@ -5,6 +5,7 @@ import {catchError, of, switchMap} from "rxjs";
 import {LoginUserRequest, UserAddRequest} from "../model/user";
 import {UserActions} from "../index";
 import {SharedActions} from "../../../shared";
+import {closeSpinnerAction} from "../../../shared/store/actions";
 
 @Injectable()
 export class UserEffects {
