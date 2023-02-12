@@ -1,11 +1,22 @@
-import {INIT_USER_STATE, State} from "../../modules/user/store/state";
+import {INIT_SHARED_STATE, State} from "./state";
 import {Action, createReducer, on} from "@ngrx/store";
 import {cloneDeep} from "lodash-es";
+import {closeSpinner, openSpinner} from "./actions";
+
 
 const reducer = createReducer(
-  cloneDeep(INIT_USER_STATE)
+  cloneDeep(INIT_SHARED_STATE),
+  on(openSpinner, (state: State) => {
+    return {
+      show: true
+    };
+  }),
+  on(closeSpinner, (state: State) => {
+    return {
+      show: false
+    };
+  })
 )
-
 export function reducers(state: State | undefined, action: Action) {
   return reducer(state, action);
 }

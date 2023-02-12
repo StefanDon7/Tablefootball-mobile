@@ -9,7 +9,7 @@ import { ToastrService } from "ngx-toastr";
 import {TranslateService} from "@ngx-translate/core";
 
 @Injectable()
-export class UserEffects {
+export class SharedEffect {
   constructor(private action$: Actions,
               private navigator: Router,
               private notificationMessages: ToastrService,

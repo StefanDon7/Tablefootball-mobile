@@ -6,6 +6,7 @@ import {Store} from "@ngrx/store";
 import {AppState} from "../../../../root-store/state";
 import {UserActions} from "../../index";
 import {Regex} from "../../../../shared/model/regex";
+import {SharedActions} from "../../../../shared";
 
 @Component({
   selector: 'app-add-user',
@@ -31,6 +32,7 @@ export class AddUserComponent implements OnInit, OnDestroy {
     const user = {
       ...this.form.getRawValue()
     } as UserAddRequest;
+    this.store$.dispatch(SharedActions.openSpinner());
     this.store$.dispatch(UserActions.addUser({user}));
   }
 

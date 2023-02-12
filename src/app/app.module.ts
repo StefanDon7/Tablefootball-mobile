@@ -18,12 +18,14 @@ import {GroupPageModule} from "./modules/group/group.module";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {environment} from "../environments/environment";
 import {GroupApiService} from "./modules/group/api/group-api-service";
+import {LoadingSpinnerComponent} from "./shared/components/loading-spinner/loading-spinner.component";
 
 @NgModule({
   declarations:
     [
       AppComponent,
-      SideNavComponent
+      SideNavComponent,
+      LoadingSpinnerComponent
     ],
   imports:
     [

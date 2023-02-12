@@ -15,11 +15,15 @@ export class UserEffects {
   addUserEffect$ = createEffect(() => this.action$.pipe(
     ofType(UserActions.addUser),
     switchMap((data: { user: UserAddRequest }) => this.api.addUser(data.user).pipe(
-      switchMap(user => of(
-        UserActions.addUserSuccess({user}),
-        SharedActions.successMessages({messagesKey: 'gsadgds'})
-      )),
+      switchMap(user => {
+        return of(
+          UserActions.addUserSuccess({user}),
+          SharedActions.closeSpinner(),
+          SharedActions.successMessages({messagesKey: 'gsadgds'})
+        )
+      }),
       catchError(error => of(
+        SharedActions.closeSpinner(),
         UserActions.addUserError(error),
       ))
     ))
@@ -30,9 +34,11 @@ export class UserEffects {
     switchMap((data: { user: LoginUserRequest }) => this.api.loginUser(data.user).pipe(
       switchMap(user => of(
         UserActions.loginUserSuccess({user}),
+        SharedActions.closeSpinner(),
         SharedActions.successMessages({messagesKey: 'gsadgds'})
       )),
       catchError(error => of(
+        SharedActions.closeSpinner(),
         UserActions.loginUserError(error),
       ))
     ))
