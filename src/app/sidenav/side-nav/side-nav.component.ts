@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {SideNavSection} from "../model/side-nav";
-import {User} from "../../modules/user/model/user";
+import {LoginUserRequest, User} from "../../modules/user/model/user";
 import {Subject, takeUntil} from "rxjs";
 import {AppState} from "../../root-store/state";
 import {select, Store} from "@ngrx/store";
 import {selectLoginUser} from "../../modules/user/store/selectors";
 import {UserActions} from "../../modules/user";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-side-nav',
@@ -19,7 +20,8 @@ export class SideNavComponent implements OnInit {
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
 
-  constructor(private store$: Store<AppState>) {
+  constructor(private store$: Store<AppState>, private router: Router,
+  ) {
   }
 
   ngOnInit() {
@@ -67,12 +69,15 @@ export class SideNavComponent implements OnInit {
   }
 
   select(): void {
+    this.store$.dispatch(UserActions.loginUser({user: {email: 's.lezaic95@gmail.com', password: '123brkovi'}}))
+
     this.store$.pipe(select(selectLoginUser)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
       if (value) {
         this.user = value;
         this.populateSideNavElements();
       } else {
         this.items = [];
+        this.router.navigate(["/user/login"]);
       }
     })
   }

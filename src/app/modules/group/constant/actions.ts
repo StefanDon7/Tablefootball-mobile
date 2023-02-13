@@ -10,4 +10,7 @@ export const enum EGroupActions {
   GetGroupsByUser = '[Group] Get Groups By User',
   GetGroupsByUserSuccess = '[Group] Get Groups By User Success',
   GetGroupsByUserError = '[Group] Get Groups By User Error',
+
+  SELECT_GROUP = '[Group] Select Group',
+
 }

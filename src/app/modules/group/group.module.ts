@@ -12,7 +12,7 @@ import {EffectsModule} from "@ngrx/effects";
 import {StoreModule} from "@ngrx/store";
 import {GroupEffect} from "./store/effect";
 import {reducers} from "./store/reducer";
-import {UserGroupComponent} from "./components/user-group/user-group.component";
+import {UserGroupsComponent} from "./components/user-groups/user-groups.component";
 
 @NgModule({
   imports: [
@@ -24,7 +24,7 @@ import {UserGroupComponent} from "./components/user-group/user-group.component";
     EffectsModule.forFeature([GroupEffect]),
     StoreModule.forFeature('group', reducers)
   ],
-  declarations: [GroupPage, AddGroupComponent, UserGroupComponent]
+  declarations: [GroupPage, AddGroupComponent, UserGroupsComponent]
 })
 export class GroupPageModule {
 }

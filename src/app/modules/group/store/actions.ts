@@ -14,6 +14,8 @@ export const getGroupsByUser = createAction(EGroupActions.GetGroupsByUser, props
 export const getGroupsByUserSuccess = createAction(EGroupActions.GetGroupsByUserSuccess, props<{ groups: Group[] }>());
 export const getGroupsByUserError = createAction(EGroupActions.GetGroupsByUserError, props<{ error: string }>());
 
+export const selectGroup = createAction(EGroupActions.SELECT_GROUP, props<{ group: Group }>());
+
 const all = union({
   addGroup,
   addGroupSuccess,

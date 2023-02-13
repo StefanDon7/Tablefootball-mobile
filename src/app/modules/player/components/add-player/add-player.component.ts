@@ -5,10 +5,11 @@ import {Subject, takeUntil} from "rxjs";
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../../../../root-store/state";
 import {selectLoginUser} from "../../../user/store/selectors";
-import {GroupAddRequest} from "../../../group/model/group";
+import {Group, GroupAddRequest} from "../../../group/model/group";
 import {GroupActions} from "../../../group";
 import {PlayerAddRequest} from "../../model/player";
 import {PlayerActions} from "../../index";
+import {selectSelectedGroup} from "../../../group/store/selectors";
 
 @Component({
   selector: 'app-add-player',
@@ -19,7 +20,9 @@ export class AddPlayerComponent implements OnInit {
 
   form: FormGroup;
   user: User | undefined;
+  selectedGroup: Group | undefined;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
+  isDisable = false;
 
 
   constructor(private formBuilder: FormBuilder,
@@ -34,6 +37,15 @@ export class AddPlayerComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.store$.pipe(select(selectSelectedGroup)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
+      if (value) {
+        this.selectedGroup = value;
+        this.isDisable = true;
+        this.form.patchValue({
+          groupUuid: this.selectedGroup?.uuid
+        })
+      }
+    });
     this.store$.pipe(select(selectLoginUser)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
       if (value) {
         this.user = value;

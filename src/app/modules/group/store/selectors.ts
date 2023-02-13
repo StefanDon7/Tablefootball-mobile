@@ -4,7 +4,7 @@ import {AppState} from "../../../root-store/state";
 import {Group} from "../model/group";
 
 export const getAddedGroup = (state: State) => state?.addedGroup;
-export const getGroup = (state: State) => state?.userGroups;
+export const getSelectedGroup = (state: State) => state?.selectedGroup;
 export const getUserGroups = (state: State) => state?.userGroups;
 
 export const selectFeature = (state: AppState): State => {
@@ -15,7 +15,12 @@ export const selectFeature = (state: AppState): State => {
 export const selectAddedGroup: MemoizedSelector<AppState, Group | undefined> = createSelector(selectFeature, s1 => {
   return s1.addedGroup;
 });
+
+export const selectSelectedGroup: MemoizedSelector<AppState, Group | undefined> = createSelector(selectFeature, s1 => {
+  return s1.selectedGroup;
+});
 export const selectUserGroups: MemoizedSelector<AppState, Group[]> = createSelector(selectFeature, s1 => {
   return s1.userGroups;
 });
+
 
