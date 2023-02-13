@@ -1,20 +1,14 @@
 import {Action, createReducer, on} from "@ngrx/store";
 import {cloneDeep} from 'lodash-es';
-import {addGroupSuccess, getGroupsByUserSuccess} from "./actions";
+import {addPlayerSuccess} from "./actions";
 import {INIT_GROUP_STATE, State} from "./state";
 
 const reducer = createReducer(
   cloneDeep(INIT_GROUP_STATE),
-  on(addGroupSuccess, (state: State, {group}) => {
+  on(addPlayerSuccess, (state: State, {player}) => {
     return ({
       ...state,
-      addedGroup: group
-    });
-  }),
-  on(getGroupsByUserSuccess, (state: State, {groups}) => {
-    return ({
-      ...state,
-      userGroups: groups
+      addPlayer: player
     });
   }),
 )

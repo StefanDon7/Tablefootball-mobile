@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserApiService} from "../../../user/api/user-api-service";
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../../../../root-store/state";
 import {User} from "../../../user/model/user";
@@ -42,7 +41,6 @@ export class AddGroupComponent implements OnInit {
       ...this.form.getRawValue(),
       userUuid: this.user?.uuid
     } as GroupAddRequest;
-    console.log(group);
     this.store$.dispatch(GroupActions.addGroup({group}))
   }
 

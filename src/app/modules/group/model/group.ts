@@ -4,7 +4,7 @@ export interface Group {
   id: string;
   uuid: string;
   name: string;
-  userUuid: User;
+  user: User;
 }
 
 export interface GroupAddRequest {

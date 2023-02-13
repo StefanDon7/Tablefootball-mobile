@@ -1,20 +1,30 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 
-import { PlayerPageRoutingModule } from './player-routing.module';
+import {PlayerPageRoutingModule} from './player-routing.module';
 
-import { PlayerPage } from './player.page';
+import {PlayerPage} from './player.page';
+import {AddPlayerComponent} from "./components/add-player/add-player.component";
+import {EffectsModule} from "@ngrx/effects";
+import {GroupEffect} from "../group/store/effect";
+import {StoreModule} from "@ngrx/store";
+import {reducers} from "../group/store/reducer";
+import {PlayerEffect} from "./store/effect";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PlayerPageRoutingModule
+    PlayerPageRoutingModule,
+    ReactiveFormsModule,
+    EffectsModule.forFeature([PlayerEffect]),
+    StoreModule.forFeature('player', reducers)
   ],
-  declarations: [PlayerPage]
+  declarations: [PlayerPage, AddPlayerComponent]
 })
-export class PlayerPageModule {}
+export class PlayerPageModule {
+}

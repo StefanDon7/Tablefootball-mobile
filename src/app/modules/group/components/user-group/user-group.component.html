@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>User groups</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="background">
+  <ion-grid>
+    <ion-card class="card">
+      <ion-row>
+        <ion-col class="rb">
+          #
+        </ion-col>
+        <ion-col class="groupName">
+          <ion-icon name="people"></ion-icon>
+          Group name
+        </ion-col>
+        <ion-col class="groupName">
+          <ion-icon name="people"></ion-icon>
+          Created by
+        </ion-col>
+        <ion-col class="selectGroup">
+          <ion-icon name="people"></ion-icon>
+          select Group
+        </ion-col>
+      </ion-row>
+    </ion-card>
+    <ion-card *ngFor="let group of groups  let i=index">
+      <ion-row>
+        <ion-col class="rb">
+          <p>{{i + 1}}</p>
+        </ion-col>
+        <ion-col class="groupName">
+          <p>{{group.name}}</p>
+        </ion-col>
+        <ion-col class="createdBy">
+          <p>{{group.user ? group.user.username : ''}}</p>
+        </ion-col>
+        <ion-col class="selectGroup">
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-grid>
+</ion-content>

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { GroupPage } from './group.page';
 import {AddGroupComponent} from "./components/add-group/add-group.component";
+import {UserGroupComponent} from "./components/user-group/user-group.component";
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'add',
     component: AddGroupComponent
+  },
+  {
+    path: 'user-groups',
+    component: UserGroupComponent
   }
 ];
 

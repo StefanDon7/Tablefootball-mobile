@@ -10,7 +10,7 @@ export const getGroup = createAction(EGroupActions.GetGroup, props<{ uuid: strin
 export const getGroupSuccess = createAction(EGroupActions.GetGroupSuccess, props<{ group: Group }>());
 export const getGroupError = createAction(EGroupActions.GetGroupError, props<{ error: string }>());
 
-export const getGroupsByUser = createAction(EGroupActions.GetGroupsByUser, props<{ userUuid: string }>());
+export const getGroupsByUser = createAction(EGroupActions.GetGroupsByUser, props<{ uuid: string }>());
 export const getGroupsByUserSuccess = createAction(EGroupActions.GetGroupsByUserSuccess, props<{ groups: Group[] }>());
 export const getGroupsByUserError = createAction(EGroupActions.GetGroupsByUserError, props<{ error: string }>());
 

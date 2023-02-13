@@ -37,7 +37,7 @@ export class SideNavComponent implements OnInit {
   }
 
   populateSideNavElements(): void {
-    this.items.push({
+    this.addItem({
       id: 0,
       name: 'User',
       icon: 'person',
@@ -46,25 +46,24 @@ export class SideNavComponent implements OnInit {
         {name: 'Log in', icon: 'log-in', url: '/user/login'},
         {name: 'Log out', icon: 'log-out', url: '/user/logout'},
       ]
-    }),
-      this.items.push({
-        id: 1,
-        name: 'Group',
-        icon: 'people-circle',
-        sideNavSectionElement: [
-          {name: 'Add group', icon: 'people', url: '/group/add'}
-        ]
-      }),
-      this.items.push({
-        id: 2,
-        name: 'Player',
-        icon: 'accessibility',
-        sideNavSectionElement: [
-          {name: 'Sign up', icon: 'person-add', url: '/user/add'},
-          {name: 'Log in', icon: 'log-in', url: '/user/login'},
-          {name: 'Log out', icon: 'log-out', url: '/user/logout'},
-        ]
-      })
+    })
+    this.addItem({
+      id: 1,
+      name: 'Group',
+      icon: 'people-circle',
+      sideNavSectionElement: [
+        {name: 'Add group', icon: 'people', url: '/group/add'},
+        {name: 'User\'s groups', icon: 'people', url: '/group/user-groups'}
+      ]
+    })
+    this.addItem({
+      id: 2,
+      name: 'Player',
+      icon: 'accessibility',
+      sideNavSectionElement: [
+        {name: 'Add player', icon: 'person-add', url: '/player/add'},
+      ]
+    })
   }
 
   select(): void {
@@ -80,5 +79,9 @@ export class SideNavComponent implements OnInit {
 
   logout() {
     this.store$.dispatch(UserActions.logoutUser());
+  }
+
+  addItem(sideNavSelection: SideNavSection): void {
+    this.items.push(sideNavSelection);
   }
 }

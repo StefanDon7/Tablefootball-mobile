@@ -25,5 +25,17 @@ export class GroupEffect {
       ))
     ))
   ));
+  getGroupByUser = createEffect(() => this.action$.pipe(
+    ofType(GroupActions.getGroupsByUser),
+    switchMap((data: { uuid: string }) => this.api.getGroupsByUser(data.uuid).pipe(
+      switchMap(groups => of(
+        GroupActions.getGroupsByUserSuccess({groups}),
+        SharedActions.successMessages({messagesKey: 'group.add.success'})
+      )),
+      catchError(error => of(
+        GroupActions.getGroupError(error),
+      ))
+    ))
+  ));
 
 }
