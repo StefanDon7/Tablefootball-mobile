@@ -13,6 +13,7 @@ import {GroupEffect} from "../group/store/effect";
 import {StoreModule} from "@ngrx/store";
 import {reducers} from "../group/store/reducer";
 import {PlayerEffect} from "./store/effect";
+import {PlayerListComponent} from "./components/player-list/player-list.component";
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import {PlayerEffect} from "./store/effect";
     EffectsModule.forFeature([PlayerEffect]),
     StoreModule.forFeature('player', reducers)
   ],
-  declarations: [PlayerPage, AddPlayerComponent]
+  declarations: [PlayerPage, AddPlayerComponent, PlayerListComponent]
 })
 export class PlayerPageModule {
 }

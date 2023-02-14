@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 
-import { PlayerPage } from './player.page';
+import {PlayerPage} from './player.page';
 import {AddPlayerComponent} from "./components/add-player/add-player.component";
+import {PlayerListComponent} from "./components/player-list/player-list.component";
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'add',
     component: AddPlayerComponent
+  },
+  {
+    path: 'players-list',
+    component: PlayerListComponent
   }
 ];
 
@@ -19,4 +24,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PlayerPageRoutingModule {}
+export class PlayerPageRoutingModule {
+}

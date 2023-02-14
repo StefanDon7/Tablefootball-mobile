@@ -15,4 +15,7 @@ export const selectFeature = (state: AppState): State => {
 export const selectAddedPlayer: MemoizedSelector<AppState, Player | undefined> = createSelector(selectFeature, s1 => {
   return s1.addedPlayer;
 });
+export const selectGroupPlayers: MemoizedSelector<AppState, Player[]> = createSelector(selectFeature, s1 => {
+  return s1.groupPlayers;
+});
 

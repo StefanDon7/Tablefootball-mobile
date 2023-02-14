@@ -22,7 +22,6 @@ export class AddPlayerComponent implements OnInit {
   user: User | undefined;
   selectedGroup: Group | undefined;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
-  isDisable = false;
 
 
   constructor(private formBuilder: FormBuilder,
@@ -40,7 +39,6 @@ export class AddPlayerComponent implements OnInit {
     this.store$.pipe(select(selectSelectedGroup)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
       if (value) {
         this.selectedGroup = value;
-        this.isDisable = true;
         this.form.patchValue({
           groupUuid: this.selectedGroup?.uuid
         })
@@ -57,6 +55,7 @@ export class AddPlayerComponent implements OnInit {
     const player = {
       ...this.form.getRawValue(),
     } as PlayerAddRequest;
+    delete player['userUuid']
     this.store$.dispatch(PlayerActions.addPlayer({player}))
   }
 

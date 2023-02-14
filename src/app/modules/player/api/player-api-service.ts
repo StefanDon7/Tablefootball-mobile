@@ -20,4 +20,7 @@ export class PlayerApiService {
   }
 
 
+  getGroupPlayers(groupUuid: string): Observable<Player[]> {
+    return this.http.get<Player[]>(this.PLAYER_API + '/group-players/' + groupUuid)
+  }
 }

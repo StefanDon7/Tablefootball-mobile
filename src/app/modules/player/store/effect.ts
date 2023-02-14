@@ -18,7 +18,20 @@ export class PlayerEffect {
     switchMap((data: { player: PlayerAddRequest }) => this.api.addPlayer(data.player).pipe(
       switchMap(player => of(
         PlayerActions.addPlayerSuccess({player}),
-        SharedActions.successMessages({messagesKey: 'group.add.success'})
+        SharedActions.successMessages({messagesKey: 'player.add.success'})
+      )),
+      catchError(error => of(
+        PlayerActions.addPlayerSuccess(error),
+      ))
+    ))
+  ));
+
+  getGroupPlayersEffect$ = createEffect(() => this.action$.pipe(
+    ofType(PlayerActions.getGroupPlayers),
+    switchMap((data: { groupUuid: string }) => this.api.getGroupPlayers(data.groupUuid).pipe(
+      switchMap(players => of(
+        PlayerActions.getGroupPlayersSuccess({players}),
+        SharedActions.successMessages({messagesKey: 'player.add.success'})
       )),
       catchError(error => of(
         PlayerActions.addPlayerSuccess(error),

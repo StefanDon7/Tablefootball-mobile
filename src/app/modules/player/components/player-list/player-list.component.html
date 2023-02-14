@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>User groups</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="background">
+  <ion-grid [fixed]="true">
+    <ion-card class="card">
+      <ion-row>
+        <ion-col>
+          #
+        </ion-col>
+        <ion-col>
+          <ion-icon name="people"></ion-icon>
+          Username
+        </ion-col>
+        <ion-col>
+          <ion-icon name="people"></ion-icon>
+          Firstname
+        </ion-col>
+        <ion-col>
+          <ion-icon name="people"></ion-icon>
+          LastName
+        </ion-col>
+      </ion-row>
+    </ion-card>
+    <ion-card *ngFor="let player of groupPlayers  let i=index">
+      <ion-row>
+        <ion-col>
+          {{i + 1}}
+        </ion-col>
+        <ion-col>
+          {{player.username}}
+        </ion-col>
+        <ion-col>
+          {{player.firstname}}
+        </ion-col>
+        <ion-col>
+          {{player.lastname}}
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-grid>
+</ion-content>
+

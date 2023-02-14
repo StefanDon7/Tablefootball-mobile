@@ -64,21 +64,21 @@ export class SideNavComponent implements OnInit {
       icon: 'accessibility',
       sideNavSectionElement: [
         {name: 'Add player', icon: 'person-add', url: '/player/add'},
+        {name: 'Group players list', icon: 'person-add', url: '/player/players-list'},
       ]
     })
   }
 
   select(): void {
-    this.store$.dispatch(UserActions.loginUser({user: {email: 's.lezaic95@gmail.com', password: '123brkovi'}}))
-
     this.store$.pipe(select(selectLoginUser)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
       if (value) {
         this.user = value;
         this.populateSideNavElements();
-      } else {
-        this.items = [];
-        this.router.navigate(["/user/login"]);
       }
+      // else {
+      //   this.items = [];
+      //   this.router.navigate(["/user/login"]);
+      // }
     })
   }
 
