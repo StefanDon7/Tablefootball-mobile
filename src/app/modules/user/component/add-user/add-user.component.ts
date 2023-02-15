@@ -7,6 +7,10 @@ import {AppState} from "../../../../root-store/state";
 import {UserActions} from "../../index";
 import {Regex} from "../../../../shared/model/regex";
 import {SharedActions} from "../../../../shared";
+import {Actions, ofType} from "@ngrx/effects";
+import {take} from "rxjs";
+import {Router} from "@angular/router";
+import {NotificationService} from "../../../../shared/service/notification-service";
 
 @Component({
   selector: 'app-add-user',
@@ -17,12 +21,11 @@ export class AddUserComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private userApiService: UserApiService, private store$: Store<AppState>) {
+  constructor(private formBuilder: FormBuilder, private notification: NotificationService, private actions$: Actions, private router: Router, private userApiService: UserApiService, private store$: Store<AppState>) {
     this.form = this.initForm();
   }
 
   ngOnInit() {
-
   }
 
   ngOnDestroy(): void {
@@ -48,7 +51,5 @@ export class AddUserComponent implements OnInit, OnDestroy {
     return form;
   }
 
-  logout() {
-    this.store$.dispatch(UserActions.logoutUser());
-  }
+
 }

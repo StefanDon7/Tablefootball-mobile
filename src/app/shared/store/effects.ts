@@ -1,20 +1,18 @@
 import {Injectable} from "@angular/core";
 import {UserApiService} from "../../modules/user/api/user-api-service";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {UserActions} from "../../modules/user";
-import {catchError, debounce, map, of, switchMap, tap, timer} from "rxjs";
+import {debounce, map, tap, timer} from "rxjs";
 import {ESharedActions} from "../constant/actions";
 import {Router} from "@angular/router";
-import {ToastrService} from "ngx-toastr";
-import {TranslateService} from "@ngx-translate/core";
 import {SpinnerService} from "../service/spinner-service";
+import {NotificationService} from "../service/notification-service";
+import {SharedActions} from "../index";
 
 @Injectable()
 export class SharedEffect {
   constructor(private action$: Actions,
               private navigator: Router,
-              private notificationMessages: ToastrService,
-              private translateService: TranslateService,
+              private notification: NotificationService,
               private spinnerService: SpinnerService
   ) {
   }
@@ -28,13 +26,19 @@ export class SharedEffect {
     ), {dispatch: false}
   );
 
-  openSuccessDialog = createEffect(
+  openSuccessMessageEffect$ = createEffect(
     () => this.action$.pipe(
-      ofType(ESharedActions.SUCCESS_MESSAGES),
+      ofType(SharedActions.successMessages),
       map((data: { messagesKey: string, extraMessage?: string }) => {
-        // let messages = this.translateService.instant(data.messagesKey);
-        // messages = data.extraMessage ? messages + ' - ' + data.extraMessage : messages;
-        this.notificationMessages.success(data.messagesKey);
+        this.notification.successMessage(data.messagesKey, data.extraMessage);
+      }),
+    ), {dispatch: false},
+  );
+  openErrorMessageEffect$ = createEffect(
+    () => this.action$.pipe(
+      ofType(SharedActions.errorMessages),
+      map((data: { messagesKey: string, extraMessage?: string }) => {
+        this.notification.errorMessage(data.messagesKey, data.extraMessage);
       }),
     ), {dispatch: false},
   );

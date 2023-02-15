@@ -18,7 +18,7 @@ export class GroupEffect {
     switchMap((data: { group: GroupAddRequest }) => this.api.addGroup(data.group).pipe(
       switchMap(group => of(
         GroupActions.addGroupSuccess({group}),
-        SharedActions.successMessages({messagesKey: 'group.add.success'})
+        SharedActions.successMessages({messagesKey: 'Group' + group.name + 'added successfully'})
       )),
       catchError(error => of(
         GroupActions.addGroupError(error),
@@ -30,7 +30,6 @@ export class GroupEffect {
     switchMap((data: { uuid: string }) => this.api.getGroupsByUser(data.uuid).pipe(
       switchMap(groups => of(
         GroupActions.getGroupsByUserSuccess({groups}),
-        SharedActions.successMessages({messagesKey: 'group.add.success'})
       )),
       catchError(error => of(
         GroupActions.getGroupError(error),

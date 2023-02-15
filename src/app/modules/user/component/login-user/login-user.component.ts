@@ -7,6 +7,8 @@ import {Regex} from "../../../../shared/model/regex";
 import {UserAddRequest} from "../../model/user";
 import {UserActions} from "../../index";
 import {SharedActions} from "../../../../shared";
+import {Actions} from "@ngrx/effects";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-user',
@@ -17,7 +19,7 @@ export class LoginUserComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private userApiService: UserApiService, private store$: Store<AppState>) {
+  constructor(private formBuilder: FormBuilder, private userApiService: UserApiService, private router: Router, private store$: Store<AppState>, private actions$: Actions) {
     this.form = this.formBuilder.group({
       email: ['', Validators.compose(
         [Validators.required, Validators.pattern(Regex.EMAIL)])],
@@ -26,7 +28,6 @@ export class LoginUserComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   createUser() {

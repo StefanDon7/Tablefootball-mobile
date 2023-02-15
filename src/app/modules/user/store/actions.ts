@@ -1,6 +1,7 @@
 import {createAction, props, union} from "@ngrx/store";
 import {LoginUserRequest, User, UserAddRequest} from "../model/user";
 import {EUserActions} from "../constant/actions";
+import {ESharedActions} from "../../../shared/constant/actions";
 
 
 export const addUser = createAction(EUserActions.AddUser, props<{ user: UserAddRequest }>());
@@ -14,6 +15,7 @@ export const loginUserError = createAction(EUserActions.LoginUserError, props<{ 
 export const logoutUser = createAction(EUserActions.LogoutUser);
 export const logoutUserSuccess = createAction(EUserActions.LogoutUserSuccess, props<{ user: User }>());
 export const logoutUserError = createAction(EUserActions.LogoutUserError, props<{ error: string }>());
+
 
 const all = union({
   addUser,

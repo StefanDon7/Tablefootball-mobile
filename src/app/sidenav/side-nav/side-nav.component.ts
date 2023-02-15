@@ -70,6 +70,7 @@ export class SideNavComponent implements OnInit {
   }
 
   select(): void {
+    console.log(this.router.getCurrentNavigation()?.id);
     this.store$.pipe(select(selectLoginUser)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
       if (value) {
         this.user = value;
