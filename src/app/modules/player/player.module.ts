@@ -9,11 +9,10 @@ import {PlayerPageRoutingModule} from './player-routing.module';
 import {PlayerPage} from './player.page';
 import {AddPlayerComponent} from "./components/add-player/add-player.component";
 import {EffectsModule} from "@ngrx/effects";
-import {GroupEffect} from "../group/store/effect";
 import {StoreModule} from "@ngrx/store";
-import {reducers} from "../group/store/reducer";
 import {PlayerEffect} from "./store/effect";
 import {PlayerListComponent} from "./components/player-list/player-list.component";
+import {reducers} from "./store/reducer";
 
 @NgModule({
   imports: [

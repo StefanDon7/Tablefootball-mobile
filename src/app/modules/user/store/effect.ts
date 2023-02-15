@@ -38,7 +38,7 @@ export class UserEffects {
         UserActions.loginUserSuccess({user}),
         SharedActions.closeSpinner(),
         SharedActions.successMessages({messagesKey: 'Greeting ', extraMessage: user.firstname + ' ' + user.lastname}),
-        SharedActions.navigate({url: ['group/user-groups']})
+        // SharedActions.navigate({url: ['group/user-groups']})
       )),
       catchError(error => of(
         SharedActions.closeSpinner(),

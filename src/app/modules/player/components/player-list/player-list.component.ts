@@ -30,16 +30,21 @@ export class PlayerListComponent implements OnInit {
     this.store$.pipe(select(selectSelectedGroup)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
       if (value) {
         this.selectedGroup = value;
+        this.store$.dispatch(PlayerActions.getGroupPlayers({groupUuid: this.selectedGroup ? this.selectedGroup?.uuid : ''}))
       }
     });
     this.store$.pipe(select(selectGroupPlayers)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
       if (value) {
         this.groupPlayers = value;
-        this.store$.dispatch(PlayerActions.getGroupPlayers({groupUuid: this.selectedGroup ? this.selectedGroup?.uuid : ''}))
+        console.log(this.groupPlayers);
       }
     });
   }
 
   dispatch(): void {
+  }
+
+  edit(player: Player) {
+
   }
 }

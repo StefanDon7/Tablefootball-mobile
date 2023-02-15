@@ -7,7 +7,7 @@ export interface State {
   addedPlayer: Player | undefined;
 }
 
-export const INIT_GROUP_STATE: State = {
+export const INIT_PLAYER_STATE: State = {
   error: '',
   groupPlayers: [],
   player: undefined,
