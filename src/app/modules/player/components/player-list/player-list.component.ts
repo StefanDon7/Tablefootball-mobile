@@ -36,7 +36,6 @@ export class PlayerListComponent implements OnInit {
     this.store$.pipe(select(selectGroupPlayers)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
       if (value) {
         this.groupPlayers = value;
-        console.log(this.groupPlayers);
       }
     });
   }

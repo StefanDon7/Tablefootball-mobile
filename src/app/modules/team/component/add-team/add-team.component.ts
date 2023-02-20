@@ -10,6 +10,8 @@ import {GroupActions} from "../../../group";
 import {selectSelectedGroup} from "../../../group/store/selectors";
 import {TeamAddRequest} from "../../model/team";
 import {TeamActions} from "../../index";
+import {selectGroupPlayers} from "../../../player/store/selectors";
+import {PlayerActions} from "../../../player";
 
 @Component({
   selector: 'app-add-team',
@@ -41,9 +43,15 @@ export class AddTeamComponent implements OnInit, OnDestroy {
     this.store$.pipe(select(selectSelectedGroup)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
       if (value) {
         this.selectedGroup = value;
+        this.store$.dispatch(PlayerActions.getGroupPlayers({groupUuid: this.selectedGroup ? this.selectedGroup?.uuid : ''}))
         this.form.patchValue({
           groupUuid: this.selectedGroup?.uuid
         })
+      }
+    });
+    this.store$.pipe(select(selectGroupPlayers)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
+      if (value) {
+        this.groupPlayers = value;
       }
     });
   }
