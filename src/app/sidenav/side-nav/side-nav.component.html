@@ -8,7 +8,7 @@
 <!--            *ngIf="user?.firstname!==undefined && user.lastname!==undefined">{{user.firstname + " " + user.lastname}}</ion-note>-->
           <ion-accordion-group>
             <ion-item *ngFor="let item of items;">
-              <ion-accordion [value]="item.id">
+              <ion-accordion [hidden]="item.isHidden" [value]="item.id">
                 <ion-item slot="header" color="light">
                   <ion-label>{{item.name}}</ion-label>
                   <ion-icon slot="start" [ios]="item.icon+'-outline'" [md]="item.icon+'-sharp'"></ion-icon>

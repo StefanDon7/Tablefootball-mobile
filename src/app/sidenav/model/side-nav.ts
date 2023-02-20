@@ -8,5 +8,6 @@ export interface SideNavSection {
   id?: number;
   name?: string;
   icon?: string;
+  isHidden?: boolean;
   sideNavSectionElement?: SideNavSectionElement[];
 }

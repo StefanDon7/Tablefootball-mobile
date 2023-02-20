@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SideNavSection} from "../model/side-nav";
 import {LoginUserRequest, User} from "../../modules/user/model/user";
 import {Subject, takeUntil} from "rxjs";
@@ -15,7 +15,7 @@ import {Group} from "../../modules/group/model/group";
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.scss'],
 })
-export class SideNavComponent implements OnInit {
+export class SideNavComponent implements OnInit, OnDestroy {
 
   items: SideNavSection[] = [];
   user: User | undefined;
@@ -36,17 +36,13 @@ export class SideNavComponent implements OnInit {
     this.ngUnsubscribe.unsubscribe();
   }
 
-
-  trackItems(index: number, itemObject: any) {
-    return itemObject.id;
-  }
-
   populateSideNavElements(): void {
     if (this.user) {
       this.addItem({
         id: 0,
         name: 'User',
         icon: 'person',
+        isHidden: false,
         sideNavSectionElement: [
           {name: 'Sign up', icon: 'person-add', url: '/user/add'},
           {name: 'Log in', icon: 'log-in', url: '/user/login'},
@@ -57,41 +53,30 @@ export class SideNavComponent implements OnInit {
         id: 1,
         name: 'Group',
         icon: 'people-circle',
+        isHidden: false,
         sideNavSectionElement: [
           {name: 'Add group', icon: 'people', url: '/group/add'},
           {name: 'User\'s groups', icon: 'people', url: '/group/user-groups'}
         ]
       })
     }
-    if (this.selectedGroup) {
-      this.addItem({
-        id: 2,
-        name: 'Player',
-        icon: 'accessibility',
-        sideNavSectionElement: [
-          {name: 'Add player', icon: 'person-add', url: '/player/add'},
-          {name: 'Group players list', icon: 'person-add', url: '/player/players-list'},
-        ]
-      })
-    }
+
   }
 
   select(): void {
     this.store$.pipe(select(selectSelectedGroup)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
       if (value) {
         this.selectedGroup = value;
-        this.populateSideNavElements();
+        this.populateAnotherSideNavElements();
       }
     });
     this.store$.pipe(select(selectLoginUser)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
       if (value) {
-        this.user = value;
-        this.populateSideNavElements();
+        if (value.uuid !== this.user?.uuid) {
+          this.user = value;
+          this.populateSideNavElements();
+        }
       }
-      // else {
-      //   this.items = [];
-      //   this.router.navigate(["/user/login"]);
-      // }
     })
   }
 
@@ -102,9 +87,33 @@ export class SideNavComponent implements OnInit {
   addItem(sideNavSelection: SideNavSection): void {
     this.items.forEach(value => {
       if (value.id === sideNavSelection) {
+        console.log('postoji vec', value.name)
         return;
       }
     })
     this.items.push(sideNavSelection);
   }
+
+  populateAnotherSideNavElements(): void {
+    this.addItem({
+      id: 2,
+      name: 'Player',
+      icon: 'accessibility',
+      isHidden: false,
+      sideNavSectionElement: [
+        {name: 'Add player', icon: 'person-add', url: '/player/add'},
+        {name: 'Group players list', icon: 'person-add', url: '/player/players-list'},
+      ]
+    })
+    this.addItem({
+      id: 3,
+      name: 'Team',
+      icon: 'accessibility',
+      isHidden: false,
+      sideNavSectionElement: [
+        {name: 'Add player', icon: 'person-add', url: '/team/add'},
+      ]
+    })
+  }
+
 }
