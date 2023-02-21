@@ -112,6 +112,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
       isHidden: false,
       sideNavSectionElement: [
         {name: 'Add player', icon: 'person-add', url: '/team/add'},
+        {name: 'Group teams list', icon: 'people', url: '/team/teams-list'},
       ]
     })
   }

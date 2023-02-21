@@ -26,5 +26,17 @@ export class TeamEffect {
     ))
   ));
 
+  getGroupTeamsEffect$ = createEffect(() => this.action$.pipe(
+    ofType(TeamActions.getGroupTeams),
+    switchMap((data: { groupUuid: string }) => this.api.getGroupTeams(data.groupUuid).pipe(
+      switchMap(teams => of(
+        TeamActions.getGroupTeamsSuccess({teams}),
+      )),
+      catchError(error => of(
+        TeamActions.getGroupTeamsError(error),
+      ))
+    ))
+  ));
+
 
 }

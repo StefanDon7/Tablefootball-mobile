@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { TeamPage } from './team.page';
 import {AddTeamComponent} from "./component/add-team/add-team.component";
+import {TeamListComponent} from "./component/team-list/team-list.component";
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'add',
     component: AddTeamComponent
+  },
+  {
+    path: 'teams-list',
+    component: TeamListComponent
   }
 ];
 

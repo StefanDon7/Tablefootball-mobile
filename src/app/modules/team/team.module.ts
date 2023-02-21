@@ -9,9 +9,10 @@ import {TeamPageRoutingModule} from './team-routing.module';
 import {TeamPage} from './team.page';
 import {EffectsModule} from "@ngrx/effects";
 import {StoreModule} from "@ngrx/store";
-import {reducers} from "../player/store/reducer";
 import {TeamEffect} from "./store/effect";
 import {AddTeamComponent} from "./component/add-team/add-team.component";
+import {TeamListComponent} from "./component/team-list/team-list.component";
+import {reducers} from "./store/reducer";
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import {AddTeamComponent} from "./component/add-team/add-team.component";
     StoreModule.forFeature('team', reducers),
     ReactiveFormsModule
   ],
-  declarations: [TeamPage, AddTeamComponent]
+  declarations: [TeamPage, AddTeamComponent, TeamListComponent]
 })
 export class TeamPageModule {
 }

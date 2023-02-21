@@ -18,4 +18,7 @@ export class TeamApiService {
     return this.http.post<Team>(this.TEAM_API + '/add', team)
   }
 
+  getGroupTeams(groupUuid: string): Observable<Team[]> {
+    return this.http.get<Team[]>(this.TEAM_API + '/by-group/' + groupUuid)
+  }
 }
