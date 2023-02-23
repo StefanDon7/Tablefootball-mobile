@@ -111,10 +111,20 @@ export class SideNavComponent implements OnInit, OnDestroy {
       icon: 'accessibility',
       isHidden: false,
       sideNavSectionElement: [
-        {name: 'Add player', icon: 'person-add', url: '/team/add'},
+        {name: 'Add team', icon: 'person-add', url: '/team/add'},
         {name: 'Group teams list', icon: 'people', url: '/team/teams-list'},
       ]
-    })
+    }),
+      this.addItem({
+        id: 4,
+        name: 'Match',
+        icon: 'accessibility',
+        isHidden: false,
+        sideNavSectionElement: [
+          {name: 'Add match', icon: 'person-add', url: '/match/add'},
+          {name: 'Add match', icon: 'person-add', url: '/match/in-progress'},
+        ]
+      })
   }
 
 }

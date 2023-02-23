@@ -12,6 +12,7 @@ import {TeamAddRequest} from "../../model/team";
 import {TeamActions} from "../../index";
 import {selectGroupPlayers} from "../../../player/store/selectors";
 import {PlayerActions} from "../../../player";
+import {Actions} from "@ngrx/effects";
 
 @Component({
   selector: 'app-add-team',
@@ -25,11 +26,12 @@ export class AddTeamComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(private formBuilder: FormBuilder,
+              private actions$: Actions,
               private store$: Store<AppState>) {
     this.form = this.formBuilder.group({
-      name: ['', Validators.required],
-      attackPlayerUuid: ['', Validators.required],
-      defencePlayerUuid: ['', Validators.required],
+      name: [''],
+      attackPlayer: ['', Validators.required],
+      defencePlayer: ['', Validators.required],
       groupUuid: ['', Validators.required],
     })
   }
@@ -57,8 +59,13 @@ export class AddTeamComponent implements OnInit, OnDestroy {
   }
 
   addTeam() {
+    if (!this.form.value.name) {
+      this.form.controls.name.setValue(this.form.value.attackPlayer.username + '&' + this.form.value.defencePlayer.username)
+    }
     const team = {
       ...this.form.getRawValue(),
+      attackPlayerUuid: this.form.value.attackPlayer.uuid,
+      defencePlayerUuid: this.form.value.defencePlayer.uuid,
     } as TeamAddRequest;
     this.store$.dispatch(TeamActions.addTeam({team}))
   }

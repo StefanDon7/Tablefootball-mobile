@@ -8,6 +8,11 @@ import {selectLoginUser} from "../../../user/store/selectors";
 import {Group, GroupAddRequest} from "../../../group/model/group";
 import {GroupActions} from "../../../group";
 import {selectSelectedGroup} from "../../../group/store/selectors";
+import {TeamActions} from "../../../team";
+import {selectGroupTeams} from "../../../team/store/selectors";
+import {Team} from "../../../team/model/team";
+import {Match, MatchAddRequest, MatchStatus} from "../../model/match";
+import {MatchActions} from "../../index";
 
 @Component({
   selector: 'app-add-match',
@@ -18,6 +23,7 @@ export class AddMatchComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   user: User | undefined;
+  groupsTeam: Team[] = [];
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   selectedGroup: Group | undefined;
 
@@ -39,6 +45,9 @@ export class AddMatchComponent implements OnInit, OnDestroy {
     this.store$.pipe(select(selectLoginUser)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
       if (value) {
         this.user = value;
+        this.form.patchValue({
+          createdBy: this.user.uuid
+        })
       }
     })
     this.store$.pipe(select(selectSelectedGroup)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
@@ -47,19 +56,30 @@ export class AddMatchComponent implements OnInit, OnDestroy {
         this.form.patchValue({
           groupUuid: this.selectedGroup?.uuid
         })
+        this.store$.dispatch(TeamActions.getGroupTeams({groupUuid: this.selectedGroup?.uuid}))
+      }
+    });
+    this.store$.pipe(select(selectGroupTeams)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
+      if (value) {
+        this.groupsTeam = value;
       }
     });
   }
 
   addMatch() {
-
+    const match = {
+      ...this.form.getRawValue(),
+      firstTeamUuid: this.form.value.firstTeam.uuid,
+      secondTeamUuid: this.form.value.secondTeam.uuid
+    } as MatchAddRequest
+    this.store$.dispatch(MatchActions.addMatch({match}))
   }
 
 
   initForm() {
     this.form = this.formBuilder.group({
       name: [''],
-      matchStatus: ['', Validators.required],
+      matchStatus: [MatchStatus.CREATED, Validators.required],
       firstTeam: ['', Validators.required],
       secondTeam: ['', Validators.required],
       groupUuid: [this.selectedGroup?.uuid, Validators.required],
