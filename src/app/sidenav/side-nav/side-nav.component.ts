@@ -66,8 +66,10 @@ export class SideNavComponent implements OnInit, OnDestroy {
   select(): void {
     this.store$.pipe(select(selectSelectedGroup)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
       if (value) {
+        if (!this.selectedGroup) {
+          this.populateAnotherSideNavElements();
+        }
         this.selectedGroup = value;
-        this.populateAnotherSideNavElements();
       }
     });
     this.store$.pipe(select(selectLoginUser)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
