@@ -7,6 +7,8 @@ export enum MatchStatus {
 }
 
 export interface Match {
+  id: string;
+  uuid: string
   name: string;
   matchStatus: MatchStatus;
   firstTeam: Team;

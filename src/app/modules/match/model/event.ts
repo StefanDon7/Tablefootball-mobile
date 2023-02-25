@@ -2,6 +2,8 @@ import {FigurePosition, Match} from "./match";
 import {Player} from "../../player/model/player";
 
 export interface Event {
+  id: string
+  uuid: string
   eventType: EventType;
   time: number;
   figurePosition?: FigurePosition;

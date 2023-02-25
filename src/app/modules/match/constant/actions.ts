@@ -17,3 +17,9 @@ export const enum EMatchActions {
 
   SELECT_MATCH = '[Match] Select Match',
 }
+
+export const enum EEventActions {
+  ADD_EVENT = '[Event] Add Event',
+  ADD_EVENT_SUCCESS = '[Event] Add Event Success',
+  ADD_EVENT_ERROR = '[Event] Add Events Error',
+}

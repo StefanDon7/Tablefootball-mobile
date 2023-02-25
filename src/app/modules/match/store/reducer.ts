@@ -6,7 +6,7 @@ import {
   getGroupMatches,
   getGroupMatchesSuccess,
   getPlayerMatchesSuccess,
-  getTeamMatchesSuccess
+  getTeamMatchesSuccess, selectMatch
 } from "./actions";
 
 const reducer = createReducer(
@@ -15,6 +15,12 @@ const reducer = createReducer(
     return ({
       ...state,
       addedMatch: match
+    });
+  }),
+  on(selectMatch, (state: State, {match}) => {
+    return ({
+      ...state,
+      selectedMatch: match
     });
   }),
   on(getGroupMatchesSuccess, (state: State, {matches}) => {

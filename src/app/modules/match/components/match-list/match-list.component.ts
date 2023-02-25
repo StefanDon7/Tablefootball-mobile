@@ -50,8 +50,8 @@ export class MatchListComponent implements OnInit, OnDestroy {
     this.store$.dispatch(MatchActions.getGroupMatches({uuid: this.selectedGroup ? this.selectedGroup?.uuid : ''}))
   }
 
-  edit(match: Match) {
-
+  selectMatch(match: Match) {
+    this.store$.dispatch(MatchActions.selectMatch({match}))
   }
 
 

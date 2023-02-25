@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {Group, GroupAddRequest} from "../../group/model/group";
 import {Observable} from "rxjs";
 import {Match, MatchAddRequest} from "../model/match";
+import {EventAddRequest, Event} from "../model/event";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import {Match, MatchAddRequest} from "../model/match";
 export class MatchApiService {
 
   readonly MATCH_API = `${environment.baseURI}/api/match`;
+  readonly EVENT_API = `${environment.baseURI}/api/event`;
 
   constructor(private http: HttpClient) {
   }
@@ -22,11 +24,11 @@ export class MatchApiService {
 
 
   getGroupMatches(uuid: string): Observable<Match[]> {
-    return this.http.get<Match[]>(this.MATCH_API + '/by-group/'+uuid)
+    return this.http.get<Match[]>(this.MATCH_API + '/by-group/' + uuid)
   }
 
   getTeamMatches(uuid: string): Observable<Match[]> {
-    return this.http.get<Match[]>(this.MATCH_API + '/by-player/'+uuid)
+    return this.http.get<Match[]>(this.MATCH_API + '/by-player/' + uuid)
   }
 
   getPlayerMatches(uuid: string): Observable<Match[]> {
@@ -34,4 +36,7 @@ export class MatchApiService {
   }
 
 
+  addEvent(event: EventAddRequest): Observable<Event> {
+    return this.http.post<Event>(this.EVENT_API + '/add', event)
+  }
 }

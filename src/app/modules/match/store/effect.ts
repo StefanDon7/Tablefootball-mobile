@@ -5,6 +5,8 @@ import {SharedActions} from "../../../shared";
 import {MatchActions} from "../index";
 import {MatchAddRequest} from "../model/match";
 import {MatchApiService} from "../api/match-api-service";
+import {EEventActions} from "../constant/actions";
+import {EventAddRequest} from "../model/event";
 
 @Injectable()
 export class MatchEffect {
@@ -21,6 +23,20 @@ export class MatchEffect {
       )),
       catchError(error => of(
         MatchActions.addMatchError(error),
+      ))
+    ))
+  ));
+
+  addEventEffect$ = createEffect(() => this.action$.pipe(
+    ofType(EEventActions.ADD_EVENT),
+    switchMap((data: { eventAddRequest: EventAddRequest }) => this.api.addEvent(data.eventAddRequest).pipe(
+      switchMap(event => of(
+        MatchActions.addEventSuccess({event}),
+        SharedActions.closeSpinner(),
+        SharedActions.successMessages({messagesKey: 'Event added successfully'})
+      )),
+      catchError(error => of(
+        MatchActions.addEventError(error),
       ))
     ))
   ));

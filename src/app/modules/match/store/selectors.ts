@@ -13,7 +13,7 @@ export const selectAddedMatch: MemoizedSelector<AppState, Match | undefined> = c
   return s1.addedMatch;
 });
 
-export const selectSelectedGroup: MemoizedSelector<AppState, Match | undefined> = createSelector(selectFeature, s1 => {
+export const selectSelectedMatch: MemoizedSelector<AppState, Match | undefined> = createSelector(selectFeature, s1 => {
   return s1.selectedMatch;
 });
 export const selectGroupMatches: MemoizedSelector<AppState, Match[]> = createSelector(selectFeature, s1 => {
