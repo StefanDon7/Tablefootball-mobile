@@ -1,4 +1,5 @@
 import {Match} from "../model/match";
+import {Event} from "../model/event";
 
 export interface State {
   error: string;
@@ -7,6 +8,7 @@ export interface State {
   playerMatches: Match[];
   selectedMatch: Match | undefined
   addedMatch: Match | undefined;
+  matchEvents: Event[];
 }
 
 export const INIT_MATCH_STATE: State = {
@@ -16,4 +18,5 @@ export const INIT_MATCH_STATE: State = {
   playerMatches: [],
   selectedMatch: undefined,
   addedMatch: undefined,
+  matchEvents: []
 };

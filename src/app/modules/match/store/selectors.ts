@@ -2,6 +2,7 @@ import {State} from "./state";
 import {createSelector, MemoizedSelector} from "@ngrx/store";
 import {AppState} from "../../../root-store/state";
 import {Match} from "../model/match";
+import {Event} from "../model/event";
 
 
 export const selectFeature = (state: AppState): State => {
@@ -24,6 +25,10 @@ export const selectTeamMatches: MemoizedSelector<AppState, Match[]> = createSele
 });
 export const selectPlayerMatches: MemoizedSelector<AppState, Match[]> = createSelector(selectFeature, s1 => {
   return s1.playerMatches;
+});
+
+export const selectMatchEvents: MemoizedSelector<AppState, Event[]> = createSelector(selectFeature, s1 => {
+  return s1.matchEvents;
 });
 
 

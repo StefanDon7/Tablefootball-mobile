@@ -11,6 +11,10 @@ export const addEvent = createAction(EEventActions.ADD_EVENT, props<{ event: Eve
 export const addEventSuccess = createAction(EEventActions.ADD_EVENT_SUCCESS, props<{ event: Event }>());
 export const addEventError = createAction(EEventActions.ADD_EVENT_ERROR, props<{ error: string }>());
 
+export const getEventsByMatch = createAction(EEventActions.GET_EVENTS_BY_MATCH, props<{ matchUuid: string }>());
+export const getEventsByMatchSuccess = createAction(EEventActions.GET_EVENTS_BY_MATCH_SUCCESS, props<{ events: Event[] }>());
+export const getEventsByMatchError = createAction(EEventActions.GET_EVENTS_BY_MATCH_ERROR, props<{ error: string }>());
+
 export const getGroupMatches = createAction(EMatchActions.GET_GROUP_MATCHES, props<{ uuid: string }>());
 export const getGroupMatchesSuccess = createAction(EMatchActions.GET_GROUP_MATCHES_SUCCESS, props<{ matches: Match[] }>());
 export const getGroupMatchesError = createAction(EMatchActions.GET_GROUP_MATCHES_ERROR, props<{ error: string }>());

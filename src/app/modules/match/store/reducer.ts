@@ -2,7 +2,7 @@ import {Action, createReducer, on} from "@ngrx/store";
 import {cloneDeep} from 'lodash-es';
 import {INIT_MATCH_STATE, State} from "./state";
 import {
-  addMatchSuccess,
+  addMatchSuccess, getEventsByMatchSuccess,
   getGroupMatches,
   getGroupMatchesSuccess,
   getPlayerMatchesSuccess,
@@ -39,6 +39,12 @@ const reducer = createReducer(
     return ({
       ...state,
       teamMatches: matches
+    });
+  }),
+  on(getEventsByMatchSuccess, (state: State, {events}) => {
+    return ({
+      ...state,
+      matchEvents: events
     });
   }),
 )

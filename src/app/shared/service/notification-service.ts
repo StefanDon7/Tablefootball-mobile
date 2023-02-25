@@ -11,7 +11,7 @@ export class NotificationService {
 
   async successMessage(message: string, extraMessage?: string) {
     const toast = await this.toastController.create({
-      message: message + ' ' + extraMessage,
+      message: message + ' ' + (extraMessage ? extraMessage : ''),
       duration: 3000,
       position: 'top',
       color: 'success',
@@ -24,7 +24,7 @@ export class NotificationService {
 
   async errorMessage(message: string, extraMessage?: string) {
     const toast = await this.toastController.create({
-      message: message + ' ' + extraMessage,
+      message: message + ' ' + (extraMessage ? extraMessage : ''),
       duration: 3000,
       position: 'top',
       color: "danger"

@@ -39,4 +39,8 @@ export class MatchApiService {
   addEvent(event: EventAddRequest): Observable<Event> {
     return this.http.post<Event>(this.EVENT_API + '/add', event)
   }
+
+  getEventsByMatches(uuid: string): Observable<Event[]> {
+    return this.http.get<Event[]>(this.EVENT_API + '/match/' + uuid)
+  }
 }

@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
 import {FigurePosition, Match, TEAM} from "../../model/match";
-import {EventAddRequest, EventType} from "../../model/event";
+import {Event, EventAddRequest, EventType} from "../../model/event";
 import {selectSelectedGroup} from "../../../group/store/selectors";
 import {select, Store} from '@ngrx/store';
 import {AppState} from "../../../../root-store/state";
@@ -9,6 +9,7 @@ import {Group} from "../../../group/model/group";
 import {selectSelectedMatch} from "../../store/selectors";
 import {SharedActions} from "../../../../shared";
 import {MatchActions} from "../../index";
+import {Actions, ofType} from "@ngrx/effects";
 
 @Component({
   selector: 'app-add-match-events',
@@ -23,8 +24,11 @@ export class AddMatchEventsComponent implements OnInit, OnDestroy {
   teamGoal = TEAM;
   selectedFigure = FigurePosition.NULL;
   selectedTeam: TEAM | undefined;
+  matchEvents: Event[] = []
+  firstTeamGoals: number = 0;
+  secondTeamGoals: number = 0;
 
-  constructor(private store$: Store<AppState>) {
+  constructor(private store$: Store<AppState>, private actions$: Actions) {
   }
 
   private ngUnsubscribe: Subject<void> = new Subject<void>();
@@ -40,7 +44,6 @@ export class AddMatchEventsComponent implements OnInit, OnDestroy {
   }
 
   dispatch(): void {
-
   }
 
   select(): void {
@@ -52,6 +55,19 @@ export class AddMatchEventsComponent implements OnInit, OnDestroy {
     this.store$.pipe(select(selectSelectedMatch)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
       if (value) {
         this.selectedMatch = value;
+        this.store$.dispatch(MatchActions.getEventsByMatch({matchUuid: this.selectedMatch?.uuid}))
+      }
+    });
+    this.actions$.pipe(ofType(MatchActions.addEventSuccess)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(action => {
+      if (action) {
+        this.store$.dispatch(MatchActions.getEventsByMatch({matchUuid: this.selectedMatch?.uuid ? this.selectedMatch?.uuid : ''}))
+      }
+    });
+
+    this.actions$.pipe(ofType(MatchActions.getEventsByMatchSuccess)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(action => {
+      if (action) {
+        this.matchEvents = action.events;
+        this.calculateMatchResult();
       }
     });
   }
@@ -67,10 +83,6 @@ export class AddMatchEventsComponent implements OnInit, OnDestroy {
   }
 
   save(teamGoal: TEAM) {
-
-    // console.log(this.selectedTeam);
-    // console.log(this.selectedFigure);
-    // console.log(teamGoal);
     const date = new Date(new Date()).getTime();
     console.log(date);
     const event = {
@@ -112,9 +124,69 @@ export class AddMatchEventsComponent implements OnInit, OnDestroy {
         break;
     }
     console.log(event);
-    // this.store$.dispatch(SharedActions.openSpinner());
-    // this.store$.dispatch(MatchActions.addEvent({event}));
+    this.store$.dispatch(SharedActions.openSpinner());
+    this.store$.dispatch(MatchActions.addEvent({event}));
+    this.store$.dispatch(MatchActions.getEventsByMatch({matchUuid: this.selectedMatch ? this.selectedMatch?.uuid : ''}))
     this.selectedFigure = FigurePosition.NULL;
+
+  }
+
+
+  calculateMatchResult(): void {
+    this.firstTeamGoals = 0;
+    this.secondTeamGoals = 0;
+    this.matchEvents.forEach(value => {
+      if (value.player?.uuid === value.match.firstTeam.attackPlayer.uuid) {
+        if (value.eventType === EventType.GOAL) {
+          this.firstTeamGoals++;
+        } else if (value.eventType === EventType.OWN_GOAL) {
+          this.secondTeamGoals++;
+        } else if (value.eventType === EventType.MINUS) {
+          if (this.firstTeamGoals > 0) {
+            this.firstTeamGoals--;
+          }
+        }
+      } else if (value.player?.uuid === value.match.firstTeam.defencePlayer.uuid) {
+        if (value.eventType === EventType.GOAL) {
+          this.firstTeamGoals++;
+        } else if (value.eventType === EventType.OWN_GOAL) {
+          this.secondTeamGoals++;
+        }
+      } else if (value.player?.uuid === value.match.secondTeam.attackPlayer.uuid) {
+        if (value.eventType === EventType.GOAL) {
+          this.secondTeamGoals++;
+        } else if (value.eventType === EventType.OWN_GOAL) {
+          this.firstTeamGoals++;
+        } else if (value.eventType === EventType.MINUS) {
+          if (this.secondTeamGoals > 0) {
+            this.secondTeamGoals--;
+          }
+        }
+      } else if (value.player?.uuid === value.match.secondTeam.defencePlayer.uuid) {
+        if (value.eventType === EventType.GOAL) {
+          this.secondTeamGoals++;
+        } else if (value.eventType === EventType.OWN_GOAL) {
+          this.firstTeamGoals++;
+        }
+      }
+    })
+    console.log(this.firstTeamGoals);
+    console.log(this.secondTeamGoals);
+  }
+
+  startMatch() {
+
+  }
+
+  pause() {
+
+  }
+
+  play() {
+
+  }
+
+  endMatch() {
 
   }
 

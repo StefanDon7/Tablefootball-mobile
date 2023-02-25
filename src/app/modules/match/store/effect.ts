@@ -22,21 +22,25 @@ export class MatchEffect {
         SharedActions.successMessages({messagesKey: 'Match created successfully'})
       )),
       catchError(error => of(
+        SharedActions.closeSpinner(),
         MatchActions.addMatchError(error),
+        SharedActions.errorMessages({messagesKey: error.message})
       ))
     ))
   ));
 
   addEventEffect$ = createEffect(() => this.action$.pipe(
     ofType(EEventActions.ADD_EVENT),
-    switchMap((data: { eventAddRequest: EventAddRequest }) => this.api.addEvent(data.eventAddRequest).pipe(
+    switchMap((data: { event: EventAddRequest }) => this.api.addEvent(data.event).pipe(
       switchMap(event => of(
         MatchActions.addEventSuccess({event}),
         SharedActions.closeSpinner(),
         SharedActions.successMessages({messagesKey: 'Event added successfully'})
       )),
       catchError(error => of(
+        SharedActions.closeSpinner(),
         MatchActions.addEventError(error),
+        SharedActions.errorMessages({messagesKey: error.message})
       ))
     ))
   ));
@@ -48,6 +52,7 @@ export class MatchEffect {
         MatchActions.getGroupMatchesSuccess({matches}),
       )),
       catchError(error => of(
+        SharedActions.closeSpinner(),
         MatchActions.getGroupMatchesError(error),
       ))
     ))
@@ -59,6 +64,7 @@ export class MatchEffect {
         MatchActions.getTeamMatchesSuccess({matches}),
       )),
       catchError(error => of(
+        SharedActions.closeSpinner(),
         MatchActions.getTeamMatchesError(error),
       ))
     ))
@@ -71,7 +77,21 @@ export class MatchEffect {
         MatchActions.getPlayerMatchesSuccess({matches}),
       )),
       catchError(error => of(
+        SharedActions.closeSpinner(),
         MatchActions.getPlayerMatchesError(error),
+      ))
+    ))
+  ));
+
+  getEventsByMatchEffect$ = createEffect(() => this.action$.pipe(
+    ofType(MatchActions.getEventsByMatch),
+    switchMap((data: { matchUuid: string }) => this.api.getEventsByMatches(data.matchUuid).pipe(
+      switchMap(events => of(
+        MatchActions.getEventsByMatchSuccess({events}),
+      )),
+      catchError(error => of(
+        SharedActions.closeSpinner(),
+        MatchActions.getEventsByMatchError(error),
       ))
     ))
   ));

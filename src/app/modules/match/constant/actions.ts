@@ -22,4 +22,8 @@ export const enum EEventActions {
   ADD_EVENT = '[Event] Add Event',
   ADD_EVENT_SUCCESS = '[Event] Add Event Success',
   ADD_EVENT_ERROR = '[Event] Add Events Error',
+
+  GET_EVENTS_BY_MATCH = '[Event] Get Events By Matches',
+  GET_EVENTS_BY_MATCH_SUCCESS = '[Event] Get Events By Matches Success',
+  GET_EVENTS_BY_MATCH_ERROR = '[Event] Get Events By Matches Error',
 }

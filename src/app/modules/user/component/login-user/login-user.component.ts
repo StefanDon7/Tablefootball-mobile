@@ -19,7 +19,11 @@ export class LoginUserComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private userApiService: UserApiService, private router: Router, private store$: Store<AppState>, private actions$: Actions) {
+  constructor(private formBuilder: FormBuilder,
+              private userApiService: UserApiService,
+              private router: Router,
+              private store$: Store<AppState>,
+              private actions$: Actions) {
     this.form = this.formBuilder.group({
       email: ['', Validators.compose(
         [Validators.required, Validators.pattern(Regex.EMAIL)])],
