@@ -124,7 +124,8 @@ export class SideNavComponent implements OnInit, OnDestroy {
         isHidden: false,
         sideNavSectionElement: [
           {name: 'Add match', icon: 'person-add', url: '/match/add'},
-          {name: 'Add match', icon: 'person-add', url: '/match/in-progress'},
+          {name: 'Match', icon: 'person-add', url: '/match/in-progress'},
+          {name: 'Group list', icon: 'person-add', url: '/match/group-list'},
         ]
       })
   }

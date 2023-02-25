@@ -23,3 +23,19 @@ export interface MatchAddRequest {
   groupUuid: string;
   createdBy: string;
 }
+
+export enum FigurePosition {
+  GOALKEEPER = 'GOALKEEPER',
+  DEFENCE_LEFT = 'DEFENCE_LEFT',
+  DEFENCE_RIGHT = 'DEFENCE_RIGHT',
+  ATTACK_RIGHT = 'ATTACK_RIGHT',
+  ATTACK_MIDDLE = 'ATTACK_MIDDLE',
+  ATTACK_LEFT = 'ATTACK_LEFT',
+  MIDFIELD = 'MIDFIELD',
+  NULL = 'NULL'
+}
+
+export enum TEAM {
+  HOME = 'HOME',
+  AWAY = 'AWAY',
+}

@@ -4,6 +4,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {MatchPage} from './match.page';
 import {AddMatchComponent} from "./components/add-match/add-match.component";
 import {AddMatchEventsComponent} from "./components/add-match-events/add-match-events.component";
+import {MatchListComponent} from "./components/match-list/match-list.component";
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'in-progress',
     component: AddMatchEventsComponent
+  },
+  {
+    path: 'group-list',
+    component: MatchListComponent
   }
 ];
 

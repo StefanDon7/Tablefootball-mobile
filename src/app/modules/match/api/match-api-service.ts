@@ -21,4 +21,17 @@ export class MatchApiService {
   }
 
 
+  getGroupMatches(uuid: string): Observable<Match[]> {
+    return this.http.get<Match[]>(this.MATCH_API + '/by-group/'+uuid)
+  }
+
+  getTeamMatches(uuid: string): Observable<Match[]> {
+    return this.http.get<Match[]>(this.MATCH_API + '/by-player/'+uuid)
+  }
+
+  getPlayerMatches(uuid: string): Observable<Match[]> {
+    return this.http.get<Match[]>(this.MATCH_API + '/by-matches/' + uuid)
+  }
+
+
 }

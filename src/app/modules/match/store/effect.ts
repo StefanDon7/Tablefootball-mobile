@@ -25,4 +25,39 @@ export class MatchEffect {
     ))
   ));
 
+  getMatchesByGroupEffect$ = createEffect(() => this.action$.pipe(
+    ofType(MatchActions.getGroupMatches),
+    switchMap((data: { uuid: string }) => this.api.getGroupMatches(data.uuid).pipe(
+      switchMap(matches => of(
+        MatchActions.getGroupMatchesSuccess({matches}),
+      )),
+      catchError(error => of(
+        MatchActions.getGroupMatchesError(error),
+      ))
+    ))
+  ));
+  getMatchesByTeamEffect$ = createEffect(() => this.action$.pipe(
+    ofType(MatchActions.getTeamMatches),
+    switchMap((data: { uuid: string }) => this.api.getTeamMatches(data.uuid).pipe(
+      switchMap(matches => of(
+        MatchActions.getTeamMatchesSuccess({matches}),
+      )),
+      catchError(error => of(
+        MatchActions.getTeamMatchesError(error),
+      ))
+    ))
+  ));
+
+  getMatchesByPlayerEffect$ = createEffect(() => this.action$.pipe(
+    ofType(MatchActions.getPlayerMatches),
+    switchMap((data: { uuid: string }) => this.api.getPlayerMatches(data.uuid).pipe(
+      switchMap(matches => of(
+        MatchActions.getPlayerMatchesSuccess({matches}),
+      )),
+      catchError(error => of(
+        MatchActions.getPlayerMatchesError(error),
+      ))
+    ))
+  ));
+
 }

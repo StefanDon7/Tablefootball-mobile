@@ -13,18 +13,19 @@ import {EffectsModule} from "@ngrx/effects";
 import {StoreModule} from "@ngrx/store";
 import {MatchEffect} from "./store/effect";
 import {reducers} from "./store/reducer";
+import {MatchListComponent} from "./components/match-list/match-list.component";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
-        MatchPageRoutingModule,
-        EffectsModule.forFeature([MatchEffect]),
-        StoreModule.forFeature('match', reducers),
-        ReactiveFormsModule
-    ],
-  declarations: [MatchPage, AddMatchComponent, AddMatchEventsComponent]
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    MatchPageRoutingModule,
+    EffectsModule.forFeature([MatchEffect]),
+    StoreModule.forFeature('match', reducers),
+    ReactiveFormsModule
+  ],
+  declarations: [MatchPage, AddMatchComponent, AddMatchEventsComponent, MatchListComponent]
 })
 export class MatchPageModule {
 }

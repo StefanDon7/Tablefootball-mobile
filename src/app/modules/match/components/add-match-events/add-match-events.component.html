@@ -1,86 +1,100 @@
 <ion-grid no-padding>
   <ion-row>
     <ion-col class="col-md-12">
-      <ion-button>
-        <ion-icon slot="icon-only" name="star"></ion-icon>
-      </ion-button>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="col-md-6">
-      <ion-button>
-        <ion-icon slot="icon-only" name="star"></ion-icon>
-      </ion-button>
-    </ion-col>
-    <ion-col class="col-md-6">
-      <ion-button>
-        <ion-icon slot="icon-only" name="star"></ion-icon>
-      </ion-button>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="col-md-4">
-      <ion-button color="danger">
-        <ion-icon slot="icon-only" name="star"></ion-icon>
-      </ion-button>
-    </ion-col>
-    <ion-col class="col-md-4">
-      <ion-button color="danger">
-        <ion-icon slot="icon-only" name="star"></ion-icon>
-      </ion-button>
-    </ion-col>
-    <ion-col class="col-md-4">
-      <ion-button color="danger">
+      <ion-button [disabled]="selectedFigure===position.NULL" (click)="save(teamGoal.HOME)">
         <ion-icon slot="icon-only" name="star"></ion-icon>
       </ion-button>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col class="col-md-12">
-      <ion-button>
-        <ion-icon slot="icon-only" name="star"></ion-icon>
-      </ion-button>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="col-md-12">
-      <ion-button color="danger">
-        <ion-icon slot="icon-only" name="star"></ion-icon>
-      </ion-button>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="col-md-4">
-      <ion-button>
-        <ion-icon slot="icon-only" name="star"></ion-icon>
-      </ion-button>
-    </ion-col>
-    <ion-col class="col-md-4">
-      <ion-button>
-        <ion-icon slot="icon-only" name="star"></ion-icon>
-      </ion-button>
-    </ion-col>
-    <ion-col class="col-md-4">
-      <ion-button>
+      <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.GOALKEEPER)">
         <ion-icon slot="icon-only" name="star"></ion-icon>
       </ion-button>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col class="col-md-6">
-      <ion-button  color="danger">
+      <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.DEFENCE_RIGHT)">
         <ion-icon slot="icon-only" name="star"></ion-icon>
       </ion-button>
     </ion-col>
-    <ion-col  class="col-md-6">
-      <ion-button color="danger">
+    <ion-col class="col-md-6">
+      <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.DEFENCE_LEFT)">
+        <ion-icon slot="icon-only" name="star"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="col-md-4">
+      <ion-button color="danger" [disabled]="selectedFigure!==position.NULL" (click)="awayTeam(position.ATTACK_LEFT)">
+        <ion-icon slot="icon-only" name="star"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col class="col-md-4">
+      <ion-button color="danger" [disabled]="selectedFigure!==position.NULL" (click)="awayTeam(position.ATTACK_MIDDLE)">
+        <ion-icon slot="icon-only" name="star"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col class="col-md-4">
+      <ion-button color="danger" [disabled]="selectedFigure!==position.NULL" (click)="awayTeam(position.ATTACK_RIGHT)">
         <ion-icon slot="icon-only" name="star"></ion-icon>
       </ion-button>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col class="col-md-12">
-      <ion-button color="danger">
+      <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.MIDFIELD)">
+        <ion-icon slot="icon-only" name="star"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="col-md-12">
+      <ion-button color="danger" [disabled]="selectedFigure!==position.NULL" (click)="awayTeam(position.MIDFIELD)">
+        <ion-icon slot="icon-only" name="star"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="col-md-4">
+      <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.ATTACK_RIGHT)">
+        <ion-icon slot="icon-only" name="star"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col class="col-md-4">
+      <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.ATTACK_MIDDLE)">
+        <ion-icon slot="icon-only" name="star"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col class="col-md-4">
+      <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.ATTACK_LEFT)">
+        <ion-icon slot="icon-only" name="star"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="col-md-6">
+      <ion-button color="danger" [disabled]="selectedFigure!==position.NULL" (click)="awayTeam(position.DEFENCE_LEFT)">
+        <ion-icon slot="icon-only" name="star"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col class="col-md-6">
+      <ion-button color="danger" [disabled]="selectedFigure!==position.NULL" (click)="awayTeam(position.DEFENCE_RIGHT)">
+        <ion-icon slot="icon-only" name="star"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="col-md-12">
+      <ion-button color="danger" [disabled]="selectedFigure!==position.NULL" (click)="awayTeam(position.GOALKEEPER)">
+        <ion-icon slot="icon-only" name="star"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="col-md-12">
+      <ion-button [disabled]="selectedFigure===position.NULL" (click)="save(teamGoal.AWAY)">
         <ion-icon slot="icon-only" name="star"></ion-icon>
       </ion-button>
     </ion-col>
