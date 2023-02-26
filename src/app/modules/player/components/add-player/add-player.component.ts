@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../../user/model/user";
-import {Subject, takeUntil} from "rxjs";
+import {Subject, take, takeUntil} from "rxjs";
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../../../../root-store/state";
 import {selectLoginUser} from "../../../user/store/selectors";
@@ -10,6 +10,9 @@ import {GroupActions} from "../../../group";
 import {PlayerAddRequest} from "../../model/player";
 import {PlayerActions} from "../../index";
 import {selectSelectedGroup} from "../../../group/store/selectors";
+import {Actions, ofType} from "@ngrx/effects";
+import {MatchActions} from "../../../match";
+import {UserActions} from "../../../user";
 
 @Component({
   selector: 'app-add-player',
@@ -25,7 +28,8 @@ export class AddPlayerComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder,
-              private store$: Store<AppState>) {
+              private store$: Store<AppState>,
+              private actions$: Actions) {
     this.form = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
@@ -49,6 +53,15 @@ export class AddPlayerComponent implements OnInit {
         this.user = value;
       }
     })
+    this.actions$.pipe(ofType(PlayerActions.addPlayerSuccess)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(action => {
+      if (action) {
+        this.form.patchValue({
+          firstname: '',
+          lastname: '',
+          username: '',
+        })
+      }
+    });
   }
 
   addPlayer() {

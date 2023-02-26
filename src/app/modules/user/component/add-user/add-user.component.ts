@@ -11,6 +11,7 @@ import {Actions, ofType} from "@ngrx/effects";
 import {take} from "rxjs";
 import {Router} from "@angular/router";
 import {NotificationService} from "../../../../shared/service/notification-service";
+import {TeamActions} from "../../../team";
 
 @Component({
   selector: 'app-add-user',
@@ -26,6 +27,12 @@ export class AddUserComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.actions$.pipe(ofType(UserActions.addUserSuccess)).pipe(take(1)).subscribe(action => {
+      if (action) {
+        this.form.reset();
+        this.router.navigateByUrl('user/login');
+      }
+    });
   }
 
   ngOnDestroy(): void {

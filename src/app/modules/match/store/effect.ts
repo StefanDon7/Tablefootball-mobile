@@ -19,6 +19,8 @@ export class MatchEffect {
     switchMap((data: { match: MatchAddRequest }) => this.api.addMatch(data.match).pipe(
       switchMap(match => of(
         MatchActions.addMatchSuccess({match}),
+        MatchActions.selectMatch({match}),
+        SharedActions.navigate({url: ['/match/in-progress/']}),
         SharedActions.successMessages({messagesKey: 'Match created successfully'})
       )),
       catchError(error => of(

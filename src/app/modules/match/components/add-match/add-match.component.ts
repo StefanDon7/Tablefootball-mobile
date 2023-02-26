@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../../user/model/user";
-import {Subject, takeUntil} from "rxjs";
+import {Subject, take, takeUntil} from "rxjs";
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../../../../root-store/state";
 import {selectLoginUser} from "../../../user/store/selectors";
@@ -13,6 +13,7 @@ import {selectGroupTeams} from "../../../team/store/selectors";
 import {Team} from "../../../team/model/team";
 import {Match, MatchAddRequest, MatchStatus} from "../../model/match";
 import {MatchActions} from "../../index";
+import {Actions, ofType} from "@ngrx/effects";
 
 @Component({
   selector: 'app-add-match',
@@ -29,6 +30,7 @@ export class AddMatchComponent implements OnInit, OnDestroy {
 
 
   constructor(private formBuilder: FormBuilder,
+              private actions$: Actions,
               private store$: Store<AppState>) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
@@ -62,6 +64,11 @@ export class AddMatchComponent implements OnInit, OnDestroy {
     this.store$.pipe(select(selectGroupTeams)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
       if (value) {
         this.groupsTeam = value;
+      }
+    });
+    this.actions$.pipe(ofType(MatchActions.addMatchSuccess)).pipe(take(1)).subscribe(action => {
+      if (action) {
+        this.form.reset();
       }
     });
   }

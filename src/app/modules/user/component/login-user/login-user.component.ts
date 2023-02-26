@@ -7,8 +7,9 @@ import {Regex} from "../../../../shared/model/regex";
 import {UserAddRequest} from "../../model/user";
 import {UserActions} from "../../index";
 import {SharedActions} from "../../../../shared";
-import {Actions} from "@ngrx/effects";
+import {Actions, ofType} from "@ngrx/effects";
 import {Router} from "@angular/router";
+import {take} from "rxjs";
 
 @Component({
   selector: 'app-login-user',
@@ -32,6 +33,12 @@ export class LoginUserComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.actions$.pipe(ofType(UserActions.loginUserSuccess)).pipe(take(1)).subscribe(action => {
+      if (action) {
+        this.form.reset();
+        this.router.navigateByUrl('/group/user-groups');
+      }
+    });
   }
 
   createUser() {

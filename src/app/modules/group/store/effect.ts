@@ -18,6 +18,7 @@ export class GroupEffect {
     switchMap((data: { group: GroupAddRequest }) => this.api.addGroup(data.group).pipe(
       switchMap(group => of(
         GroupActions.addGroupSuccess({group}),
+        SharedActions.navigate({url: ['/group/user-groups']}),
         SharedActions.successMessages({messagesKey: 'Group' + group.name + 'added successfully'})
       )),
       catchError(error => of(

@@ -4,7 +4,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../../../../root-store/state";
 import {selectLoginUser} from "../../../user/store/selectors";
-import {Subject, takeUntil} from "rxjs";
+import {Subject, take, takeUntil} from "rxjs";
 import {Group, GroupAddRequest} from "../../../group/model/group";
 import {GroupActions} from "../../../group";
 import {selectSelectedGroup} from "../../../group/store/selectors";
@@ -12,7 +12,7 @@ import {TeamAddRequest} from "../../model/team";
 import {TeamActions} from "../../index";
 import {selectGroupPlayers} from "../../../player/store/selectors";
 import {PlayerActions} from "../../../player";
-import {Actions} from "@ngrx/effects";
+import {Actions, ofType} from "@ngrx/effects";
 
 @Component({
   selector: 'app-add-team',
@@ -32,7 +32,7 @@ export class AddTeamComponent implements OnInit, OnDestroy {
       name: [''],
       attackPlayer: ['', Validators.required],
       defencePlayer: ['', Validators.required],
-      groupUuid: ['', Validators.required],
+      groupUuid: [''],
     })
   }
 
@@ -56,12 +56,20 @@ export class AddTeamComponent implements OnInit, OnDestroy {
         this.groupPlayers = value;
       }
     });
+    this.actions$.pipe(ofType(TeamActions.addTeamSuccess)).pipe(take(1)).subscribe(action => {
+      if (action) {
+        this.form.reset();
+      }
+    });
   }
 
   addTeam() {
     if (!this.form.value.name) {
       this.form.controls.name.setValue(this.form.value.attackPlayer.username + '&' + this.form.value.defencePlayer.username)
     }
+    this.form.patchValue({
+      groupUuid: this.selectedGroup?.uuid
+    });
     const team = {
       ...this.form.getRawValue(),
       attackPlayerUuid: this.form.value.attackPlayer.uuid,

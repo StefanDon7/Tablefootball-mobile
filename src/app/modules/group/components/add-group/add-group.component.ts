@@ -4,9 +4,12 @@ import {select, Store} from "@ngrx/store";
 import {AppState} from "../../../../root-store/state";
 import {User} from "../../../user/model/user";
 import {selectLoginUser} from "../../../user/store/selectors";
-import {Subject, takeUntil} from "rxjs";
+import {Subject, take, takeUntil} from "rxjs";
 import {GroupAddRequest} from "../../model/group";
 import {GroupActions} from "../../index";
+import {Actions, ofType} from "@ngrx/effects";
+import {PlayerActions} from "../../../player";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-group',
@@ -21,6 +24,8 @@ export class AddGroupComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder,
+              private actions$: Actions,
+              private router: Router,
               private store$: Store<AppState>) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
@@ -34,6 +39,11 @@ export class AddGroupComponent implements OnInit {
         this.user = value;
       }
     })
+    this.actions$.pipe(ofType(GroupActions.addGroupSuccess)).pipe(take(1)).subscribe(action => {
+      if (action) {
+        this.form.reset();
+      }
+    });
   }
 
   addGroup() {
