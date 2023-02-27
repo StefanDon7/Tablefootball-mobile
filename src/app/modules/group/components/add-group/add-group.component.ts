@@ -41,7 +41,6 @@ export class AddGroupComponent implements OnInit {
     })
     this.actions$.pipe(ofType(GroupActions.addGroupSuccess)).pipe(take(1)).subscribe(action => {
       if (action) {
-        this.form.reset();
       }
     });
   }

@@ -68,7 +68,6 @@ export class AddMatchComponent implements OnInit, OnDestroy {
     });
     this.actions$.pipe(ofType(MatchActions.addMatchSuccess)).pipe(take(1)).subscribe(action => {
       if (action) {
-        this.form.reset();
       }
     });
   }

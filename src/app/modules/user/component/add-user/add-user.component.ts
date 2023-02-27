@@ -29,7 +29,6 @@ export class AddUserComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.actions$.pipe(ofType(UserActions.addUserSuccess)).pipe(take(1)).subscribe(action => {
       if (action) {
-        this.form.reset();
         this.router.navigateByUrl('user/login');
       }
     });

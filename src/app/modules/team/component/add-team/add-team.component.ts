@@ -58,7 +58,6 @@ export class AddTeamComponent implements OnInit, OnDestroy {
     });
     this.actions$.pipe(ofType(TeamActions.addTeamSuccess)).pipe(take(1)).subscribe(action => {
       if (action) {
-        this.form.reset();
       }
     });
   }
