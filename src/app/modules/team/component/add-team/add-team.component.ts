@@ -56,8 +56,9 @@ export class AddTeamComponent implements OnInit, OnDestroy {
         this.groupPlayers = value;
       }
     });
-    this.actions$.pipe(ofType(TeamActions.addTeamSuccess)).pipe(take(1)).subscribe(action => {
+    this.actions$.pipe(ofType(TeamActions.addTeamSuccess)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(action => {
       if (action) {
+        this.form.controls.name.setValue('');
       }
     });
   }
@@ -76,6 +77,4 @@ export class AddTeamComponent implements OnInit, OnDestroy {
     } as TeamAddRequest;
     this.store$.dispatch(TeamActions.addTeam({team}))
   }
-
-
 }

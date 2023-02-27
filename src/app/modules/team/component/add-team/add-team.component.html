@@ -30,7 +30,8 @@
         <ion-select class="ion-text-end" interface="popover"
                     formControlName="defencePlayer"
                     placeholder="Defence player"
-        ><ion-select-option *ngFor="let player of groupPlayers"
+        >
+          <ion-select-option *ngFor="let player of groupPlayers"
                              [value]="player">{{ player.username }}</ion-select-option>
         </ion-select>
       </ion-item>
