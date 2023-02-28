@@ -1,0 +1,6 @@
+<div class="time">{{ time }}</div>
+<div class="controls">
+  <ion-button [disabled]="startButtonDisabled" color="primary" (click)="start()">Start</ion-button>
+  <ion-button [disabled]="!startButtonDisabled" color="warning" (click)="stop()">Stop</ion-button>
+  <ion-button color="danger" (click)="reset()">Reset</ion-button>
+</div>

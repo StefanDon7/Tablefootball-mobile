@@ -1,0 +1,15 @@
+.time {
+  font-size: 5rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+
+  ion-button:not(:last-child) {
+    margin-right: 1rem;
+  }
+}

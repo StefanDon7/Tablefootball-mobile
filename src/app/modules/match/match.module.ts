@@ -14,6 +14,7 @@ import {StoreModule} from "@ngrx/store";
 import {MatchEffect} from "./store/effect";
 import {reducers} from "./store/reducer";
 import {MatchListComponent} from "./components/match-list/match-list.component";
+import {SharedPageModule} from "../../shared/shared.module";
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import {MatchListComponent} from "./components/match-list/match-list.component";
     MatchPageRoutingModule,
     EffectsModule.forFeature([MatchEffect]),
     StoreModule.forFeature('match', reducers),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedPageModule
   ],
   declarations: [MatchPage, AddMatchComponent, AddMatchEventsComponent, MatchListComponent]
 })

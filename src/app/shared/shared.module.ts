@@ -1,16 +1,17 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 
-import { SharedPageRoutingModule } from './shared-routing.module';
+import {SharedPageRoutingModule} from './shared-routing.module';
 
-import { SharedPage } from './shared.page';
+import {SharedPage} from './shared.page';
 import {EffectsModule} from "@ngrx/effects";
 import {StoreModule} from "@ngrx/store";
 import {SharedEffect} from "./store/effects";
 import {reducers} from "./store/reducers";
+import {StopwatchComponent} from "./components/stopwatch/stopwatch.component";
 
 @NgModule({
   imports: [
@@ -21,6 +22,10 @@ import {reducers} from "./store/reducers";
     EffectsModule.forFeature([SharedEffect]),
     StoreModule.forFeature('shared', reducers)
   ],
-  declarations: [SharedPage]
+  exports: [
+    StopwatchComponent
+  ],
+  declarations: [SharedPage, StopwatchComponent]
 })
-export class SharedPageModule {}
+export class SharedPageModule {
+}

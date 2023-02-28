@@ -5,13 +5,12 @@ import {Subject, take, takeUntil} from "rxjs";
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../../../../root-store/state";
 import {selectLoginUser} from "../../../user/store/selectors";
-import {Group, GroupAddRequest} from "../../../group/model/group";
-import {GroupActions} from "../../../group";
+import {Group} from "../../../group/model/group";
 import {selectSelectedGroup} from "../../../group/store/selectors";
 import {TeamActions} from "../../../team";
 import {selectGroupTeams} from "../../../team/store/selectors";
 import {Team} from "../../../team/model/team";
-import {Match, MatchAddRequest, MatchStatus} from "../../model/match";
+import {MatchAddRequest, MatchStatus} from "../../model/match";
 import {MatchActions} from "../../index";
 import {Actions, ofType} from "@ngrx/effects";
 
