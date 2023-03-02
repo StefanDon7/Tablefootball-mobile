@@ -1,7 +1,9 @@
-<!--<ion-grid style="width: 300px; border: 3px solid black; background-color: #28ba62">-->
+<!--<ion-grid style="border: 3px solid black;">-->
+<app-stopwatch>
 
-<div>
-  <ion-row>
+</app-stopwatch>
+<div class="field">
+  <ion-row style="background-color: #3a7be0">
     <ion-col>
       <ion-label class="result-label">{{'BROJ GOLOVA: ' + firstTeamGoals}}
       </ion-label>
@@ -16,118 +18,131 @@
       </ion-button>
     </ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col class="col-md-12 ion-text-center">
-      <ion-button [disabled]="selectedFigure!==position.NULL"
-                  (click)="homeTeam(position.GOALKEEPER)">
-        {{selectedMatch?.firstTeam?.defencePlayer?.username}}
-        <!--        <ion-icon slot="icon-only" name="body"></ion-icon>-->
-      </ion-button>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="col-md-6 ion-text-center">
-      <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.DEFENCE_RIGHT)">
-        {{selectedMatch?.firstTeam?.defencePlayer?.username}}
-        <!--        <ion-icon slot="icon-only" name="body"></ion-icon>-->
-      </ion-button>
-    </ion-col>
-    <ion-col class="col-md-6 ion-text-center">
-      <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.DEFENCE_LEFT)">
-        {{selectedMatch?.firstTeam?.defencePlayer?.username}}
-        <!--        <ion-icon slot="icon-only" name="body"></ion-icon>-->
-      </ion-button>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="col-md-4 ion-text-center">
-      <ion-button color="danger" [disabled]="selectedFigure!==position.NULL" (click)="awayTeam(position.ATTACK_LEFT)">
-        {{selectedMatch?.secondTeam?.attackPlayer?.username}}
-        <!--        <ion-icon slot="icon-only" name="body"></ion-icon>-->
-      </ion-button>
-    </ion-col>
-    <ion-col class="col-md-4 ion-text-center">
-      <ion-button color="danger" [disabled]="selectedFigure!==position.NULL"
-                  (click)="awayTeam(position.ATTACK_MIDDLE)">
-        {{selectedMatch?.secondTeam?.attackPlayer?.username}}
-        <!--        <ion-icon slot="icon-only" name="body"></ion-icon>-->
-      </ion-button>
-    </ion-col>
-    <ion-col class="col-md-4 ion-text-center">
-      <ion-button color="danger" [disabled]="selectedFigure!==position.NULL"
-                  (click)="awayTeam(position.ATTACK_RIGHT)">
-        {{selectedMatch?.secondTeam?.attackPlayer?.username}}
-        <!--        <ion-icon slot="icon-only" name="body"></ion-icon>-->
-      </ion-button>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="col-md-12 ion-text-center">
-      <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.MIDFIELD)" shape="round"
-                  expand="full">
-        {{selectedMatch?.firstTeam?.attackPlayer?.username}}
-        <!--        <ion-icon slot="icon-only" name="body"></ion-icon>-->
-      </ion-button>
-    </ion-col>
-  </ion-row>
-</div>
-<app-stopwatch>
+  <div class="horizontal-line">
+    <ion-row>
+      <ion-col class="col-md-12 ion-text-center">
+        <ion-button [disabled]="selectedFigure!==position.NULL"
+                    (click)="homeTeam(position.GOALKEEPER)">
+          {{selectedMatch?.firstTeam?.defencePlayer?.username}}
+          <!--        <ion-icon slot="icon-only" name="body"></ion-icon>-->
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div class="horizontal-line">
+    <ion-row>
+      <ion-col class="col-md-6 ion-text-center">
+        <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.DEFENCE_RIGHT)">
+          {{selectedMatch?.firstTeam?.defencePlayer?.username}}
+          <!--        <ion-icon slot="icon-only" name="body"></ion-icon>-->
+        </ion-button>
+      </ion-col>
+      <ion-col class="col-md-6 ion-text-center">
+        <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.DEFENCE_LEFT)">
+          {{selectedMatch?.firstTeam?.defencePlayer?.username}}
+          <!--        <ion-icon slot="icon-only" name="body"></ion-icon>-->
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div class="horizontal-line">
 
-</app-stopwatch>
-<div>
-  <ion-row>
-    <ion-col class="col-md-12 ion-text-center">
-      <ion-button color="danger" [disabled]="selectedFigure!==position.NULL" (click)="awayTeam(position.MIDFIELD)"
-                  expand="full" shape="round">
-        {{selectedMatch?.secondTeam?.attackPlayer?.username}}
-        <!--          <ion-icon slot="icon-only" name="body"></ion-icon>-->
-      </ion-button>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="col-md-4 ion-text-center">
-      <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.ATTACK_RIGHT)">
-        {{selectedMatch?.firstTeam?.attackPlayer?.username}}
-        <!--          <ion-icon slot="icon-only" name="body"></ion-icon>-->
-      </ion-button>
-    </ion-col>
-    <ion-col class="col-md-4 ion-text-center">
-      <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.ATTACK_MIDDLE)">
-        {{selectedMatch?.firstTeam?.attackPlayer?.username}}
-        <!--          <ion-icon slot="icon-only" name="body"></ion-icon>-->
-      </ion-button>
-    </ion-col>
-    <ion-col class="col-md-4 ion-text-center">
-      <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.ATTACK_LEFT)">
-        {{selectedMatch?.firstTeam?.attackPlayer?.username}}
-        <!--          <ion-icon slot="icon-only" name="body"></ion-icon>-->
-      </ion-button>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="col-md-6 ion-text-center">
-      <ion-button color="danger" [disabled]="selectedFigure!==position.NULL"
-                  (click)="awayTeam(position.DEFENCE_LEFT)">
-        {{selectedMatch?.secondTeam?.defencePlayer?.username}}
-        <!--          <ion-icon slot="icon-only" name="body"></ion-icon>-->
-      </ion-button>
-    </ion-col>
-    <ion-col class="col-md-6 ion-text-center">
-      <ion-button color="danger" [disabled]="selectedFigure!==position.NULL"
-                  (click)="awayTeam(position.DEFENCE_RIGHT)">
-        {{selectedMatch?.secondTeam?.defencePlayer?.username}}
-        <!--          <ion-icon slot="icon-only" name="body"></ion-icon>-->
-      </ion-button>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="col-md-12 ion-text-center">
-      <ion-button color="danger" [disabled]="selectedFigure!==position.NULL" (click)="awayTeam(position.GOALKEEPER)">
-        {{selectedMatch?.secondTeam?.defencePlayer?.username}}
-        <!--          <ion-icon slot="icon-only" name="body"></ion-icon>-->
-      </ion-button>
-    </ion-col>
-  </ion-row>
+    <ion-row>
+      <ion-col class="col-md-4 ion-text-center">
+        <ion-button color="danger" [disabled]="selectedFigure!==position.NULL" (click)="awayTeam(position.ATTACK_LEFT)">
+          {{selectedMatch?.secondTeam?.attackPlayer?.username}}
+          <!--        <ion-icon slot="icon-only" name="body"></ion-icon>-->
+        </ion-button>
+      </ion-col>
+      <ion-col class="col-md-4 ion-text-center">
+        <ion-button color="danger" [disabled]="selectedFigure!==position.NULL"
+                    (click)="awayTeam(position.ATTACK_MIDDLE)">
+          {{selectedMatch?.secondTeam?.attackPlayer?.username}}
+          <!--        <ion-icon slot="icon-only" name="body"></ion-icon>-->
+        </ion-button>
+      </ion-col>
+      <ion-col class="col-md-4 ion-text-center">
+        <ion-button color="danger" [disabled]="selectedFigure!==position.NULL"
+                    (click)="awayTeam(position.ATTACK_RIGHT)">
+          {{selectedMatch?.secondTeam?.attackPlayer?.username}}
+          <!--        <ion-icon slot="icon-only" name="body"></ion-icon>-->
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div class="horizontal-line">
+
+    <ion-row>
+      <ion-col class="col-md-12 ion-text-center">
+        <ion-button class="button-five-element" [disabled]="selectedFigure!==position.NULL"
+                    (click)="homeTeam(position.MIDFIELD)">
+          {{selectedMatch?.firstTeam?.attackPlayer?.username}}
+          <!--        <ion-icon slot="icon-only" name="body"></ion-icon>-->
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div class="horizontal-line">
+    <ion-row>
+      <ion-col class="col-md-12 ion-text-center">
+        <ion-button class="button-five-element" color="danger" [disabled]="selectedFigure!==position.NULL"
+                    (click)="awayTeam(position.MIDFIELD)">
+          {{selectedMatch?.secondTeam?.attackPlayer?.username}}
+          <!--          <ion-icon slot="icon-only" name="body"></ion-icon>-->
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div class="horizontal-line">
+    <ion-row>
+      <ion-col class="col-md-4 ion-text-center">
+        <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.ATTACK_RIGHT)">
+          {{selectedMatch?.firstTeam?.attackPlayer?.username}}
+          <!--          <ion-icon slot="icon-only" name="body"></ion-icon>-->
+        </ion-button>
+      </ion-col>
+      <ion-col class="col-md-4 ion-text-center">
+        <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.ATTACK_MIDDLE)">
+          {{selectedMatch?.firstTeam?.attackPlayer?.username}}
+          <!--          <ion-icon slot="icon-only" name="body"></ion-icon>-->
+        </ion-button>
+      </ion-col>
+      <ion-col class="col-md-4 ion-text-center">
+        <ion-button [disabled]="selectedFigure!==position.NULL" (click)="homeTeam(position.ATTACK_LEFT)">
+          {{selectedMatch?.firstTeam?.attackPlayer?.username}}
+          <!--          <ion-icon slot="icon-only" name="body"></ion-icon>-->
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div class="horizontal-line">
+    <ion-row>
+      <ion-col class="col-md-6 ion-text-center">
+        <ion-button color="danger" [disabled]="selectedFigure!==position.NULL"
+                    (click)="awayTeam(position.DEFENCE_LEFT)">
+          {{selectedMatch?.secondTeam?.defencePlayer?.username}}
+          <!--          <ion-icon slot="icon-only" name="body"></ion-icon>-->
+        </ion-button>
+      </ion-col>
+      <ion-col class="col-md-6 ion-text-center">
+        <ion-button color="danger" [disabled]="selectedFigure!==position.NULL"
+                    (click)="awayTeam(position.DEFENCE_RIGHT)">
+          {{selectedMatch?.secondTeam?.defencePlayer?.username}}
+          <!--          <ion-icon slot="icon-only" name="body"></ion-icon>-->
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div class="horizontal-line">
+    <ion-row>
+      <ion-col class="col-md-12 ion-text-center">
+        <ion-button color="danger" [disabled]="selectedFigure!==position.NULL" (click)="awayTeam(position.GOALKEEPER)">
+          {{selectedMatch?.secondTeam?.defencePlayer?.username}}
+          <!--          <ion-icon slot="icon-only" name="body"></ion-icon>-->
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
   <ion-row>
     <ion-col class="col-md-12 ion-text-center">
       <ion-button color="danger" [disabled]="selectedFigure===position.NULL" (click)="save(teamGoal.AWAY)"
@@ -138,25 +153,7 @@
       </ion-button>
     </ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col>
-      <ion-label class="result-label">{{'BROJ GOLOVA: ' + secondTeamGoals}}
-      </ion-label>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col>
-      <ion-label class="result-label">{{'BROJ GOLOVA: ' + secondTeamGoals}}
-      </ion-label>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col>
-      <ion-label class="result-label">{{'BROJ GOLOVA: ' + secondTeamGoals}}
-      </ion-label>
-    </ion-col>
-  </ion-row>
-  <ion-row>
+  <ion-row style="background-color: #cf3c4f">
     <ion-col>
       <ion-label class="result-label">{{'BROJ GOLOVA: ' + secondTeamGoals}}
       </ion-label>
@@ -164,3 +161,4 @@
   </ion-row>
 </div>
 <!--</ion-grid>-->
+

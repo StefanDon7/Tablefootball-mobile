@@ -170,8 +170,6 @@ export class AddMatchEventsComponent implements OnInit, OnDestroy {
         }
       }
     })
-    console.log(this.firstTeamGoals);
-    console.log(this.secondTeamGoals);
   }
 
   startMatch() {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../../../../root-store/state";
@@ -10,18 +10,21 @@ import {GroupActions} from "../../index";
 import {Actions, ofType} from "@ngrx/effects";
 import {PlayerActions} from "../../../player";
 import {Router} from "@angular/router";
+import {MidfieldGoalType} from "../../model/midfield-goal-type";
+import {MatchType} from "../../model/match-type";
 
 @Component({
   selector: 'app-add-group',
   templateUrl: './add-group.component.html',
   styleUrls: ['./add-group.component.scss'],
 })
-export class AddGroupComponent implements OnInit {
+export class AddGroupComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   user: User | undefined;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
-
+  midfieldGoalType = Object.values(MidfieldGoalType);
+  matchType = Object.values(MatchType);
 
   constructor(private formBuilder: FormBuilder,
               private actions$: Actions,
@@ -30,6 +33,10 @@ export class AddGroupComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
     })
+  }
+
+  ngOnDestroy(): void {
+    this.form.reset();
   }
 
   ngOnInit() {
@@ -57,6 +64,8 @@ export class AddGroupComponent implements OnInit {
   initForm() {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
+      midfieldGoalType: [''],
+      matchType: [''],
     })
   }
 }

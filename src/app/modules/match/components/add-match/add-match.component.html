@@ -8,6 +8,30 @@
     <ion-col class="col-md-12">
       <ion-item fill="outline">
         <ion-select class="ion-text-end" interface="popover"
+                    formControlName="midfieldGoalType"
+                    placeholder="Midfield player goal type">
+          <ion-select-option *ngFor="let value of midfieldGoalType"
+                             [value]="value">{{ value }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row">
+    <ion-col class="col-md-12">
+      <ion-item fill="outline">
+        <ion-select class="ion-text-end" interface="popover"
+                    formControlName="matchType"
+                    placeholder="Match type">
+          <ion-select-option *ngFor="let value of matchType"
+                             [value]="value">{{value}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row">
+    <ion-col class="col-md-12">
+      <ion-item fill="outline">
+        <ion-select class="ion-text-end" interface="popover"
                     formControlName="firstTeam"
                     placeholder="Home">
           <ion-select-option *ngFor="let team of groupsTeam"

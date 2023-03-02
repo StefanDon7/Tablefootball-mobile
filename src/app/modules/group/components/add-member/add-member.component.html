@@ -1,0 +1,14 @@
+<ion-item>
+  <ion-label>Choose a fruit</ion-label>
+  <ion-select interface="popover" placeholder="Select One" (ionChange)="onFruitSelection($event)">
+    <ion-select-option *ngFor="let fruit of fruits" [value]="fruit">{{fruit}}</ion-select-option>
+  </ion-select>
+</ion-item>
+
+<ion-searchbar [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange(searchTerm)"></ion-searchbar>
+
+<ion-list>
+  <ion-item *ngFor="let fruit of filteredFruits" (click)="onFruitSelection($event)">
+   <ion-label (click)="write(fruit)"> {{fruit}} </ion-label>
+  </ion-item>
+</ion-list>

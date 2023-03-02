@@ -56,7 +56,8 @@ export class SideNavComponent implements OnInit, OnDestroy {
         isHidden: false,
         sideNavSectionElement: [
           {name: 'Add group', icon: 'people', url: '/group/add'},
-          {name: 'User\'s groups', icon: 'people', url: '/group/user-groups'}
+          {name: 'User\'s groups', icon: 'people', url: '/group/user-groups'},
+          {name: 'Add member to group', icon: 'people', url: '/group/add-member'}
         ]
       })
     }
@@ -89,7 +90,6 @@ export class SideNavComponent implements OnInit, OnDestroy {
   addItem(sideNavSelection: SideNavSection): void {
     this.items.forEach(value => {
       if (value.id === sideNavSelection) {
-        console.log('postoji vec', value.name)
         return;
       }
     })

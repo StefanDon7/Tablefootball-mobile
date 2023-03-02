@@ -13,6 +13,8 @@ import {Team} from "../../../team/model/team";
 import {MatchAddRequest, MatchStatus} from "../../model/match";
 import {MatchActions} from "../../index";
 import {Actions, ofType} from "@ngrx/effects";
+import {MidfieldGoalType} from "../../../group/model/midfield-goal-type";
+import {MatchType} from "../../../group/model/match-type";
 
 @Component({
   selector: 'app-add-match',
@@ -26,6 +28,8 @@ export class AddMatchComponent implements OnInit, OnDestroy {
   groupsTeam: Team[] = [];
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   selectedGroup: Group | undefined;
+  midfieldGoalType = Object.values(MidfieldGoalType);
+  matchType = Object.values(MatchType);
 
 
   constructor(private formBuilder: FormBuilder,
@@ -55,7 +59,9 @@ export class AddMatchComponent implements OnInit, OnDestroy {
       if (value) {
         this.selectedGroup = value;
         this.form.patchValue({
-          groupUuid: this.selectedGroup?.uuid
+          groupUuid: this.selectedGroup?.uuid,
+          matchType: this.selectedGroup?.matchType,
+          midfieldGoalType: this.selectedGroup?.midfieldGoalType
         })
         this.store$.dispatch(TeamActions.getGroupTeams({groupUuid: this.selectedGroup?.uuid}))
       }
@@ -84,6 +90,10 @@ export class AddMatchComponent implements OnInit, OnDestroy {
   initForm() {
     this.form = this.formBuilder.group({
       name: [''],
+      midfieldGoalType: [this.selectedGroup?.midfieldGoalType],
+      matchType: [this.selectedGroup?.matchType],
+      numberOfGoals: ['10'],
+      matchTimeMinutes: ['10'],
       matchStatus: [MatchStatus.CREATED, Validators.required],
       firstTeam: ['', Validators.required],
       secondTeam: ['', Validators.required],

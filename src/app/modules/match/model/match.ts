@@ -11,6 +11,8 @@ export interface Match {
   uuid: string
   name: string;
   matchStatus: MatchStatus;
+  matchTimeMinutes: number;
+  numberOfGoals: number;
   firstTeam: Team;
   secondTeam: Team;
   groupUuid: string;
@@ -22,6 +24,8 @@ export interface MatchAddRequest {
   matchStatus: MatchStatus;
   firstTeamUuid: string;
   secondTeamUuid: string;
+  matchTimeMinutes: number;
+  numberOfGoals: number;
   groupUuid: string;
   createdBy: string;
 }

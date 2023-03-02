@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-stopwatch',
@@ -13,17 +13,21 @@ export class StopwatchComponent implements OnInit {
   ngOnInit() {
   }
 
-  startButtonDisabled = false;
-  private startTime: any;
-  private elapsedTime: number = 0;
-  private interval: any;
+  @Input() startButtonDisabled = false;
+  @Input() startTime: any;
+  @Input() elapsedTime: number = 0;
+  @Input() interval: any;
 
-  time: string = '0:00';
+  @Input() time: string = '0:00';
 
   start(): void {
     this.startButtonDisabled = true;
     this.startTime = new Date();
     this.interval = setInterval(() => {
+      // if (this.time === '0:10') {
+      //   this.stop();
+      //   return;
+      // }
       this.updateTime();
     }, 500);
   }
