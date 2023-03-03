@@ -10,9 +10,8 @@
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col class="col-md-12 ion-text-center">
-      <ion-button [disabled]="selectedFigure===position.NULL" (click)="save(teamGoal.HOME)" shape="round"
-                  expand="full">
+    <ion-col class="col-md-4 ion-text-center">
+      <ion-button style="min-width: 300px" [disabled]="selectedFigure===position.NULL" (click)="save(teamGoal.HOME)" shape="round">
         <!--        <ion-icon slot="icon-only" name="body"></ion-icon>-->
         {{selectedMatch?.firstTeam?.name}}
       </ion-button>
@@ -144,10 +143,9 @@
     </ion-row>
   </div>
   <ion-row>
-    <ion-col class="col-md-12 ion-text-center">
-      <ion-button color="danger" [disabled]="selectedFigure===position.NULL" (click)="save(teamGoal.AWAY)"
-                  shape="round"
-                  expand="full">
+    <ion-col class="col-md-4 ion-text-center">
+      <ion-button style="min-width: 300px" color="danger" [disabled]="selectedFigure===position.NULL" (click)="save(teamGoal.AWAY)"
+                  shape="round">
         <!--          <ion-icon slot="icon-only" name="body"></ion-icon>-->
         {{selectedMatch?.secondTeam?.name}}
       </ion-button>

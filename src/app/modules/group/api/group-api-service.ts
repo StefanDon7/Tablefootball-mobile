@@ -23,8 +23,11 @@ export class GroupApiService {
     return this.http.post<Group>(this.GROUP_API + '/add', group)
   }
 
-  getGroupsByUser(uuid: string): Observable<Group[]> {
+  getGroupsCreatedByUser(uuid: string): Observable<Group[]> {
     return this.http.get<Group[]>(this.GROUP_API + '/get-group-created-by/' + uuid);
+  }
+  getUserGroups(uuid: string): Observable<Group[]> {
+    return this.http.get<Group[]>(this.GROUP_API + '/by-user/' + uuid);
   }
 
 

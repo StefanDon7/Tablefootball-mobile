@@ -47,8 +47,10 @@ export class AddMemberComponent implements OnInit {
   }
 
   onSearchChange(search: string) {
-    if (search !== undefined || search !== '') {
+    if (search !== undefined && search !== '') {
       this.store$.dispatch(GroupActions.getUsersByName({search}))
+    } else {
+      this.users = [];
     }
   }
 }

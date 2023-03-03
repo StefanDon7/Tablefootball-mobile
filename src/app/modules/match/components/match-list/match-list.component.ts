@@ -5,7 +5,7 @@ import {Player} from "../../../player/model/player";
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../../../../root-store/state";
 import {selectSelectedGroup} from "../../../group/store/selectors";
-import {selectGroupMatches} from "../../store/selectors";
+import {selectGroupMatches, selectSelectedMatch} from "../../store/selectors";
 import {MatchActions} from "../../index";
 import {Match} from "../../model/match";
 
@@ -18,6 +18,7 @@ export class MatchListComponent implements OnInit, OnDestroy {
   selectedGroup: Group | undefined;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   groupMatches: Match[] = [];
+  selectedMatch: Match | undefined;
 
   constructor(private store$: Store<AppState>) {
   }
@@ -42,6 +43,11 @@ export class MatchListComponent implements OnInit, OnDestroy {
     this.store$.pipe(select(selectGroupMatches)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
       if (value) {
         this.groupMatches = value;
+      }
+    });
+    this.store$.pipe(select(selectSelectedMatch)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
+      if (value) {
+        this.selectedMatch = value;
       }
     });
   }

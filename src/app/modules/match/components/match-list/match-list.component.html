@@ -39,7 +39,7 @@
           {{match.matchStatus}}
         </ion-col>
         <ion-col>
-          <button (click)="selectMatch(match)">Select</button>
+          <button *ngIf="selectedMatch?.uuid!==match.uuid" (click)="selectMatch(match)">Select</button>
         </ion-col>
       </ion-row>
     </ion-card>

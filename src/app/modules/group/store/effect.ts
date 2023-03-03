@@ -29,7 +29,7 @@ export class GroupEffect {
   ));
   getGroupByUserEffect$ = createEffect(() => this.action$.pipe(
     ofType(GroupActions.getGroupsByUser),
-    switchMap((data: { uuid: string }) => this.api.getGroupsByUser(data.uuid).pipe(
+    switchMap((data: { uuid: string }) => this.api.getUserGroups(data.uuid).pipe(
       switchMap(groups => of(
         GroupActions.getGroupsByUserSuccess({groups}),
       )),
