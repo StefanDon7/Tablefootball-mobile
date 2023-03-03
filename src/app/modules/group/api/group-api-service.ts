@@ -4,6 +4,7 @@ import {environment} from "../../../../environments/environment";
 import {Observable} from "rxjs";
 import {Group, GroupAddRequest} from "../model/group";
 import {User} from "../../user/model/user";
+import {Member, MemberAddRequest} from "../model/member";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class GroupApiService {
 
   readonly GROUP_API = `${environment.baseURI}/api/group`;
   readonly USER_API = `${environment.baseURI}/api/user`;
+  readonly MEMBER_API = `${environment.baseURI}/api/member`;
 
   constructor(private http: HttpClient) {
   }
@@ -28,5 +30,10 @@ export class GroupApiService {
 
   getUsersByName(search: string): Observable<User[]> {
     return this.http.get<User[]>(this.USER_API + '/search/' + search);
+  }
+
+  addMember(memberAddRequest: MemberAddRequest): Observable<Member> {
+    return this.http.post<Member>(this.MEMBER_API + '/add', memberAddRequest)
+
   }
 }

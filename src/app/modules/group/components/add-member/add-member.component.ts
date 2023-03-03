@@ -3,9 +3,11 @@ import {User} from "../../../user/model/user";
 import {select, Store} from "@ngrx/store";
 import {AppModule} from "../../../../app.module";
 import {AppState} from "../../../../root-store/state";
-import {selectSearchUsers} from "../../store/selectors";
+import {selectSearchUsers, selectSelectedGroup} from "../../store/selectors";
 import {Subject, takeUntil} from "rxjs";
 import {GroupActions} from "../../index";
+import {MemberAddRequest} from "../../model/member";
+import {Group} from "../../model/group";
 
 @Component({
   selector: 'app-add-member',
@@ -15,6 +17,7 @@ import {GroupActions} from "../../index";
 export class AddMemberComponent implements OnInit {
 
   users: User[] = []
+  selectedGroup: Group | undefined
   search = '';
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
@@ -27,11 +30,20 @@ export class AddMemberComponent implements OnInit {
         this.users = value;
       }
     })
+    this.store$.pipe(select(selectSelectedGroup)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
+      if (value) {
+        this.selectedGroup = value;
+      }
+    })
   }
 
 
   write(user: User) {
-    console.log(user);
+    const memberAddRequest = {
+      userUuid: user.uuid,
+      groupUuid: this.selectedGroup?.uuid
+    } as MemberAddRequest;
+    this.store$.dispatch(GroupActions.addMember({memberAddRequest}))
   }
 
   onSearchChange(search: string) {

@@ -5,6 +5,7 @@ import {catchError, of, switchMap} from "rxjs";
 import {SharedActions} from "../../../shared";
 import {GroupActions} from "../index";
 import {GroupAddRequest} from "../model/group";
+import {MemberAddRequest} from "../model/member";
 
 
 @Injectable()
@@ -49,5 +50,19 @@ export class GroupEffect {
       ))
     ))
   ));
+  addMemberEffect$ = createEffect(() => this.action$.pipe(
+    ofType(GroupActions.addMember),
+    switchMap((data: { memberAddRequest: MemberAddRequest }) => this.api.addMember(data.memberAddRequest).pipe(
+      switchMap(member => of(
+        GroupActions.addMemberSuccess({member}),
+        // SharedActions.navigate({url: ['/group/members']}),
+        SharedActions.successMessages({messagesKey: 'Member' + member.user.firstname + ' ' + member.user.lastname + 'added successfully'})
+      )),
+      catchError(error => of(
+        GroupActions.addMemberError(error),
+      ))
+    ))
+  ));
+
 
 }

@@ -1,18 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../../user/model/user";
-import {Subject, take, takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../../../../root-store/state";
 import {selectLoginUser} from "../../../user/store/selectors";
-import {Group, GroupAddRequest} from "../../../group/model/group";
-import {GroupActions} from "../../../group";
+import {Group} from "../../../group/model/group";
 import {PlayerAddRequest} from "../../model/player";
 import {PlayerActions} from "../../index";
 import {selectSelectedGroup} from "../../../group/store/selectors";
 import {Actions, ofType} from "@ngrx/effects";
-import {MatchActions} from "../../../match";
-import {UserActions} from "../../../user";
 
 @Component({
   selector: 'app-add-player',

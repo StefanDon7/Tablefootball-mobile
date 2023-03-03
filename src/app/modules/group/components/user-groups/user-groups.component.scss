@@ -1,6 +1,36 @@
-//ion-col {
-//  background-color: #135d54;
-//  border: solid 1px #fff;
-//  color: #fff;
-//  text-align: center;
-//}
+ion-table {
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: collapse;
+}
+
+ion-table ion-row {
+  background-color: #f8f8f8;
+  border-top: 1px solid #ddd;
+}
+
+ion-table ion-row:nth-of-type(even) {
+  background-color: #fff;
+}
+
+ion-table ion-row:hover {
+  background-color: #e6f7ff;
+}
+
+ion-table ion-header ion-row {
+  background-color: #4CAF50;
+  color: white;
+}
+
+ion-table ion-header ion-col {
+  font-weight: bold;
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+ion-table ion-col {
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #ddd;
+}

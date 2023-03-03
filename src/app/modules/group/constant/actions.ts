@@ -3,6 +3,10 @@ export const enum EGroupActions {
   AddGroupSuccess = '[Group] Add Group Success',
   AddGroupError = '[Group] Add Group Error',
 
+  AddMember = '[Group] Add Member',
+  AddMemberSuccess = '[Group] Add Member Success',
+  AddMemberError = '[Group] Add Member Error',
+
   GetGroup = '[Group] Get Group',
   GetGroupSuccess = '[Group] Get Group by User Success',
   GetGroupError = '[Group] Get Group by User Error',
