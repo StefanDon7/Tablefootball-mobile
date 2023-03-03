@@ -26,7 +26,7 @@ export class GroupEffect {
       ))
     ))
   ));
-  getGroupByUser = createEffect(() => this.action$.pipe(
+  getGroupByUserEffect$ = createEffect(() => this.action$.pipe(
     ofType(GroupActions.getGroupsByUser),
     switchMap((data: { uuid: string }) => this.api.getGroupsByUser(data.uuid).pipe(
       switchMap(groups => of(
@@ -34,6 +34,18 @@ export class GroupEffect {
       )),
       catchError(error => of(
         GroupActions.getGroupError(error),
+      ))
+    ))
+  ));
+
+  getUsersByNameEffect$ = createEffect(() => this.action$.pipe(
+    ofType(GroupActions.getUsersByName),
+    switchMap((data: { search: string }) => this.api.getUsersByName(data.search).pipe(
+      switchMap(users => of(
+        GroupActions.getUsersByNameSuccess({users}),
+      )),
+      catchError(error => of(
+        GroupActions.getUsersByNameError(error),
       ))
     ))
   ));

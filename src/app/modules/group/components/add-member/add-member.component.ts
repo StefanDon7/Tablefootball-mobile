@@ -1,5 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Event} from "@angular/router";
+import {User} from "../../../user/model/user";
+import {select, Store} from "@ngrx/store";
+import {AppModule} from "../../../../app.module";
+import {AppState} from "../../../../root-store/state";
+import {selectSearchUsers} from "../../store/selectors";
+import {Subject, takeUntil} from "rxjs";
+import {GroupActions} from "../../index";
 
 @Component({
   selector: 'app-add-member',
@@ -8,33 +14,29 @@ import {Event} from "@angular/router";
 })
 export class AddMemberComponent implements OnInit {
 
-  fruits = ['Apple', 'Banana', 'Orange', 'Pear'];
-  filteredFruits = this.fruits;
-  searchTerm = '';
+  users: User[] = []
+  search = '';
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
 
-  constructor() {
+  constructor(private store$: Store<AppState>) {
   }
 
   ngOnInit() {
+    this.store$.pipe(select(selectSearchUsers)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
+      if (value) {
+        this.users = value;
+      }
+    })
   }
 
 
-  onFruitSelection(event: any) {
-    console.log(event);
-    // Handle the selected fruit
+  write(user: User) {
+    console.log(user);
   }
 
-  filterFruits() {
-    this.filteredFruits = this.fruits.filter(fruit =>
-      fruit.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
-  }
-
-  write(fruit: string) {
-    console.log(fruit);
-  }
-
-  onSearchChange(searchTerm: string) {
-    console.log(searchTerm);
+  onSearchChange(search: string) {
+    if (search !== undefined || search !== '') {
+      this.store$.dispatch(GroupActions.getUsersByName({search}))
+    }
   }
 }

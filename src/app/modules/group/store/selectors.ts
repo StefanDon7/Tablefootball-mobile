@@ -2,6 +2,7 @@ import {State} from "./state";
 import {createSelector, MemoizedSelector} from "@ngrx/store";
 import {AppState} from "../../../root-store/state";
 import {Group} from "../model/group";
+import {User} from "../../user/model/user";
 
 export const getAddedGroup = (state: State) => state?.addedGroup;
 export const getSelectedGroup = (state: State) => state?.selectedGroup;
@@ -21,6 +22,10 @@ export const selectSelectedGroup: MemoizedSelector<AppState, Group | undefined> 
 });
 export const selectUserGroups: MemoizedSelector<AppState, Group[]> = createSelector(selectFeature, s1 => {
   return s1.userGroups;
+});
+
+export const selectSearchUsers: MemoizedSelector<AppState, User[]> = createSelector(selectFeature, s1 => {
+  return s1.searchUsers;
 });
 
 

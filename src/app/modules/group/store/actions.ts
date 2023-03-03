@@ -1,6 +1,7 @@
 import {createAction, props, union} from "@ngrx/store";
 import {EGroupActions} from "../constant/actions";
 import {Group, GroupAddRequest} from "../model/group";
+import {User} from "../../user/model/user";
 
 export const addGroup = createAction(EGroupActions.AddGroup, props<{ group: GroupAddRequest }>());
 export const addGroupSuccess = createAction(EGroupActions.AddGroupSuccess, props<{ group: Group }>());
@@ -13,6 +14,10 @@ export const getGroupError = createAction(EGroupActions.GetGroupError, props<{ e
 export const getGroupsByUser = createAction(EGroupActions.GetGroupsByUser, props<{ uuid: string }>());
 export const getGroupsByUserSuccess = createAction(EGroupActions.GetGroupsByUserSuccess, props<{ groups: Group[] }>());
 export const getGroupsByUserError = createAction(EGroupActions.GetGroupsByUserError, props<{ error: string }>());
+
+export const getUsersByName = createAction(EGroupActions.GetGroupsByUser, props<{ search: string }>());
+export const getUsersByNameSuccess = createAction(EGroupActions.GetGroupsByUserSuccess, props<{ users: User[] }>());
+export const getUsersByNameError = createAction(EGroupActions.GetGroupsByUserError, props<{ error: string }>());
 
 export const selectGroup = createAction(EGroupActions.SELECT_GROUP, props<{ group: Group }>());
 

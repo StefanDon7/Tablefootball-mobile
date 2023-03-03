@@ -1,10 +1,12 @@
 import {Group} from "../model/group";
+import {User} from "../../user/model/user";
 
 export interface State {
   error: string;
   userGroups: Group[];
-  selectedGroup: Group | undefined
+  selectedGroup: Group | undefined;
   addedGroup: Group | undefined;
+  searchUsers: User[];
 }
 
 export const INIT_GROUP_STATE: State = {
@@ -12,4 +14,5 @@ export const INIT_GROUP_STATE: State = {
   userGroups: [],
   selectedGroup: undefined,
   addedGroup: undefined,
+  searchUsers: []
 };
