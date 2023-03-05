@@ -7,7 +7,7 @@ import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {SideNavComponent} from "./sidenav/side-nav/side-nav.component";
-import { HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {StoreModule} from "@ngrx/store";
 import {reducers} from "./root-store/reducers";
 import {EffectsModule} from "@ngrx/effects";
@@ -17,13 +17,17 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {environment} from "../environments/environment";
 import {GroupApiService} from "./modules/group/api/group-api-service";
 import {LoadingSpinnerComponent} from "./shared/components/loading-spinner/loading-spinner.component";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslatePipe} from "./shared/pipe/translate-pipe";
 
 @NgModule({
   declarations:
     [
       AppComponent,
       SideNavComponent,
-      LoadingSpinnerComponent
+      LoadingSpinnerComponent,
+      TranslatePipe
     ],
   imports:
     [
@@ -32,6 +36,15 @@ import {LoadingSpinnerComponent} from "./shared/components/loading-spinner/loadi
       IonicModule.forRoot(),
       AppRoutingModule,
       HttpClientModule,
+      TranslateModule.forRoot({
+        loader: {
+          provide: TranslateLoader,
+          useFactory: (http: HttpClient) => {
+            return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+          },
+          deps: [HttpClient]
+        }
+      }),
       StoreModule.forRoot(reducers),
       StoreDevtoolsModule.instrument({
         maxAge: 25, // Retains last 25 states
@@ -40,7 +53,7 @@ import {LoadingSpinnerComponent} from "./shared/components/loading-spinner/loadi
       EffectsModule.forRoot([]),
     ],
   exports: [
-    ReactiveFormsModule
+    ReactiveFormsModule, TranslatePipe
   ],
   providers: [UserApiService, GroupApiService,
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],

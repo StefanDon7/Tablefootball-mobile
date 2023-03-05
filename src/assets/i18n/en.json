@@ -1,0 +1,11 @@
+{
+  "user": {
+    "id": "Id",
+    "Uuid": "Uuid",
+    "firstname": "Firstname",
+    "lastname": "Lastname",
+    "username": "Username",
+    "email": "E-mail",
+    "password": "Password"
+  }
+}

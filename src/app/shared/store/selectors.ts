@@ -13,3 +13,7 @@ export const selectFeature = (state: AppState): State => {
 export const selectSpinnerValue: MemoizedSelector<AppState, any | undefined> = createSelector(selectFeature, s1 => {
   return s1.show;
 });
+
+export const selectLanguage: MemoizedSelector<AppState, any | undefined> = createSelector(selectFeature, s1 => {
+  return s1.language;
+});

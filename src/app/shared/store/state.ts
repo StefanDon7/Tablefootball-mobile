@@ -1,7 +1,11 @@
 export interface State {
+  language: string;
   show: boolean;
+
 }
 
 export const INIT_SHARED_STATE: State = {
-  show: false,
+  language: 'en',
+  show: false
 };
+

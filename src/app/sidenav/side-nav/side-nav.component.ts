@@ -9,6 +9,7 @@ import {UserActions} from "../../modules/user";
 import {Router} from "@angular/router";
 import {selectSelectedGroup} from "../../modules/group/store/selectors";
 import {Group} from "../../modules/group/model/group";
+import {SharedActions} from "../../shared";
 
 @Component({
   selector: 'app-side-nav',
@@ -130,4 +131,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
       })
   }
 
+  changeLanguage() {
+    this.store$.dispatch(SharedActions.changeLanguage({language: 'sr'}))
+  }
 }

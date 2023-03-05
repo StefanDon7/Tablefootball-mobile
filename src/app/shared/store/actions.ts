@@ -15,6 +15,9 @@ export const openSpinnerAction = createAction(ESharedActions.OPEN_DELAYED_SPINNE
 
 export const closeSpinnerAction = createAction(ESharedActions.CLOSE_DELAYED_SPINNER);
 
+export const changeLanguage = createAction(ESharedActions.CHANGE_LANGUAGE, props<{ language: string }>());
+
+
 const all = union({});
 
 export type SharedActions = typeof all;

@@ -13,6 +13,7 @@ import {EffectsModule} from "@ngrx/effects";
 import {UserEffects} from "./store/effect";
 import {StoreModule} from "@ngrx/store";
 import {reducers} from "./store/reducer";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   imports:
@@ -23,7 +24,8 @@ import {reducers} from "./store/reducer";
       UserPageRoutingModule,
       ReactiveFormsModule,
       EffectsModule.forFeature([UserEffects]),
-      StoreModule.forFeature('user', reducers)
+      StoreModule.forFeature('user', reducers),
+      TranslateModule
     ],
   declarations:
     [

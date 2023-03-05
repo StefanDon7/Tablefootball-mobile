@@ -10,6 +10,7 @@ import {SharedActions} from "../../../../shared";
 import {Actions, ofType} from "@ngrx/effects";
 import {Router} from "@angular/router";
 import {take} from "rxjs";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-login-user',

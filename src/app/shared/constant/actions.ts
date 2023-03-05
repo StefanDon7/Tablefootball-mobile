@@ -1,4 +1,5 @@
 export const enum ESharedActions {
+  CHANGE_LANGUAGE = '[ESharedActions] Change Language',
   NAVIGATE = '[ESharedActions] Navigate',
   SUCCESS_MESSAGES = '[ESharedActions] Success Messages',
   ERROR_MESSAGES = '[ESharedActions] Error Messages',

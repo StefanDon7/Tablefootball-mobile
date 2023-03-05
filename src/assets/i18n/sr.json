@@ -1,0 +1,11 @@
+{
+  "user": {
+    "id": "Id",
+    "Uuid": "Uuid",
+    "firstname": "Ime",
+    "lastname": "Prezime",
+    "username": "Korisničko ime",
+    "email": "E-mejl",
+    "password": "Lozinka"
+  }
+}
