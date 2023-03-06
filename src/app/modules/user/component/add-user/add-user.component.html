@@ -2,24 +2,24 @@
   <ion-row no-padding justify-content-start align-items-start>
     <ion-col size="12" class="ion-margin-bottom">
       <ion-item fill="outline" mode="md">
-        <ion-label position="floating">Firstname</ion-label>
-        <ion-input formControlName="firstname" placeholder="Enter firstname"></ion-input>
+        <ion-label position="floating">{{'user.firstname' | translate}}</ion-label>
+        <ion-input formControlName="firstname" placeholder="{{'user.lastname' | translate}}"></ion-input>
       </ion-item>
     </ion-col>
   </ion-row>
   <ion-row no-padding justify-content-start align-items-start>
     <ion-col size="12" class="ion-margin-bottom">
       <ion-item fill="outline" mode="md">
-        <ion-label position="floating">Lastname</ion-label>
-        <ion-input formControlName="lastname" placeholder="Enter lastname"></ion-input>
+        <ion-label position="floating">{{'user.lastname' | translate}}</ion-label>
+        <ion-input formControlName="lastname" placeholder="{{'user.lastname' | translate}}"></ion-input>
       </ion-item>
     </ion-col>
   </ion-row>
   <ion-row no-padding justify-content-start align-items-start>
     <ion-col size="12" class="ion-margin-bottom">
       <ion-item fill="outline" mode="md">
-        <ion-label position="floating">Username</ion-label>
-        <ion-input formControlName="username" placeholder="Enter username"></ion-input>
+        <ion-label position="floating">{{'user.username' | translate}}</ion-label>
+        <ion-input formControlName="username" placeholder="{{'user.lastname' | translate}}"></ion-input>
       </ion-item>
     </ion-col>
   </ion-row>
@@ -27,9 +27,9 @@
     <ion-col size="12" class="ion-margin-bottom">
       <ion-item fill="outline" mode="md">
         <ion-label position="floating">
-          Email
+          {{'user.email' | translate}}
         </ion-label>
-        <ion-input formControlName="email" placeholder="Enter email">
+        <ion-input formControlName="email" placeholder="{{'user.lastname' | translate}}">
         </ion-input>
       </ion-item>
     </ion-col>
@@ -39,9 +39,9 @@
     <ion-col size="12" class="ion-margin-bottom">
       <ion-item fill="outline" mode="md">
         <ion-label position="floating">
-          Password
+          {{'user.password' | translate}}
         </ion-label>
-        <ion-input type="password" formControlName="password" placeholder="Enter password">
+        <ion-input type="password" formControlName="password" placeholder="{{'user.password' | translate}}">
         </ion-input>
       </ion-item>
     </ion-col>
@@ -51,7 +51,7 @@
     <ion-col size="12" class="ion-margin-bottom">
       <ion-button [disabled]="form.invalid" (click)="createUser()">
         <ion-icon name="add-circle-outline"></ion-icon>
-        Add user
+        {{'shared.actions.register' | translate}}
       </ion-button>
     </ion-col>
   </ion-row>

@@ -1,11 +1,57 @@
 {
+  "shared": {
+    "actions": {
+      "save": "Sačuvaj",
+      "add": "Dodaj",
+      "cancel": "Otkaži",
+      "reject": "Odbij"
+    },
+    "label": {
+    }
+  },
   "user": {
-    "id": "Id",
-    "Uuid": "Uuid",
     "firstname": "Ime",
     "lastname": "Prezime",
     "username": "Korisničko ime",
     "email": "E-mejl",
     "password": "Lozinka"
+  },
+  "group": {
+    "list": "Lista grupa",
+    "match_type": "Vrsta meča",
+    "midfield_goal_type": "Gol peticom",
+    "name": "Naziv grupa",
+    "user": "Kreirano od"
+  },
+  "player": {
+    "list": "Lista igrača",
+    "firstname": "Ime",
+    "lastname": "Prezime",
+    "username": "Nadimak"
+  },
+  "team": {
+    "list": "Lista timova",
+    "name": "Naziv",
+    "attack_player": "Napad",
+    "defence_player": "Odbrana"
+  },
+  "match": {
+    "list": "Lista utakmica",
+    "status": "Status",
+    "match_time_minutes": "Trajanje meča",
+    "match_type": "Vrsta meča",
+    "midfield_goal_type": "Gol peticom",
+    "name": "Naziv",
+    "numbers_of_goals": "Broj golova za pobedu"
+  },
+  "event": {
+    "list": "Lista događaja",
+    "figure_position": "Pozicija",
+    "event_type": "Tip",
+    "time": "Vreme"
+  },
+  "member": {
+    "list": "Lista članova"
   }
 }
+

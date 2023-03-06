@@ -1,11 +1,57 @@
 {
+  "shared": {
+    "actions": {
+      "save": "Save",
+      "add": "Add",
+      "cancel": "Cancel",
+      "reject": "Reject"
+    },
+    "label": {
+    }
+  },
   "user": {
-    "id": "Id",
-    "Uuid": "Uuid",
+    "list": "User list",
     "firstname": "Firstname",
     "lastname": "Lastname",
     "username": "Username",
     "email": "E-mail",
     "password": "Password"
+  },
+  "group": {
+    "list": "Group list",
+    "match_type": "Match type",
+    "midfield_goal_type": "Midfield goal type",
+    "name": "Lastname",
+    "user": "Created by"
+  },
+  "player": {
+    "list": "Player list",
+    "firstname": "Firstname",
+    "lastname": "Lastname",
+    "username": "Username"
+  },
+  "team": {
+    "list": "Team list",
+    "name": "Name",
+    "attack_player": "Attack player",
+    "defence_player": "Defence player"
+  },
+  "match": {
+    "list": "Match list",
+    "status": "Status",
+    "match_time_minutes": "Match time",
+    "match_type": "Type",
+    "midfield_goal_type": "Midfield goal type",
+    "name": "Name",
+    "numbers_of_goals": "Number of goals to win"
+  },
+  "event": {
+    "list": "Event list",
+    "figure_position": "Ime",
+    "event_type": "Type",
+    "time": "Time"
+  },
+  "member": {
+    "list": "Member list"
   }
 }
