@@ -58,5 +58,20 @@
   },
   "member": {
     "list": "Member list"
+  },
+  "match_type": {
+    "label": "Match type",
+    "type": {
+      "goal": "Goal game",
+      "time": "Play on time"
+    }
+  },
+  "midfield_goal_type": {
+    "label": "Match type",
+    "type": {
+      "minus": "Minus",
+      "zero": "Zero",
+      "plus": "Plus"
+    }
   }
 }

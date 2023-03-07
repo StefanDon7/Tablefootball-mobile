@@ -57,6 +57,21 @@
   },
   "member": {
     "list": "Lista članova"
+  },
+  "match_type": {
+    "label": "Vrsta meča",
+    "type": {
+      "goal": "Igra na golove",
+      "time": "Igra na vreme"
+    }
+  },
+  "midfield_goal_type": {
+    "label": "Gol peticom",
+    "type": {
+      "minus": "Minus",
+      "zero": "Nula",
+      "plus": "Plus"
+    }
   }
 }
 
