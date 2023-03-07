@@ -4,9 +4,14 @@
       "save": "Sačuvaj",
       "add": "Dodaj",
       "cancel": "Otkaži",
-      "reject": "Odbij"
+      "reject": "Odbij",
+      "login": "Prijavi se",
+      "register": "Napravi nalog",
+      "logout": "Odjavi se"
     },
     "label": {
+      "search_user": "Pretraži korisnika",
+      "search_user_by_email": "Pretraži korisnika preko email-a ili korisničkog imena"
     }
   },
   "user": {

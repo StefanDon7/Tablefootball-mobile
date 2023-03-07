@@ -1,6 +1,7 @@
 <ion-content class="background">
-  <ion-searchbar [(ngModel)]="search" placeholder="{{'Search user by name or email'}}" (ngModelChange)="onSearchChange(search)"></ion-searchbar>
   <ion-grid [fixed]="true">
+    <ion-searchbar [(ngModel)]="search" placeholder="{{'shared.label.search_user' | translate }}"
+                   (ngModelChange)="onSearchChange(search)"></ion-searchbar>
     <ion-card class="card">
       <ion-row>
         <ion-col class="rb">

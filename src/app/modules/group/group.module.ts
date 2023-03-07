@@ -14,17 +14,19 @@ import {GroupEffect} from "./store/effect";
 import {reducers} from "./store/reducer";
 import {UserGroupsComponent} from "./components/user-groups/user-groups.component";
 import {AddMemberComponent} from "./components/add-member/add-member.component";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    GroupPageRoutingModule,
-    ReactiveFormsModule,
-    EffectsModule.forFeature([GroupEffect]),
-    StoreModule.forFeature('group', reducers)
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        GroupPageRoutingModule,
+        ReactiveFormsModule,
+        EffectsModule.forFeature([GroupEffect]),
+        StoreModule.forFeature('group', reducers),
+        TranslateModule
+    ],
   declarations: [GroupPage, AddGroupComponent, UserGroupsComponent, AddMemberComponent]
 })
 export class GroupPageModule {

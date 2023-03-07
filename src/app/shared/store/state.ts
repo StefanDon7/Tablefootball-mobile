@@ -5,7 +5,7 @@ export interface State {
 }
 
 export const INIT_SHARED_STATE: State = {
-  language: 'en',
+  language: 'sr',
   show: false
 };
 

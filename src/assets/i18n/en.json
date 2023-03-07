@@ -4,9 +4,14 @@
       "save": "Save",
       "add": "Add",
       "cancel": "Cancel",
-      "reject": "Reject"
+      "reject": "Reject",
+      "login": "Login",
+      "register": "Register",
+      "logout": "Logout"
     },
     "label": {
+      "search_user": "Search user",
+      "search_user_by_email": "Search user by email or username"
     }
   },
   "user": {
