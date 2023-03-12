@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SideNavSection} from "../model/side-nav";
 import {LoginUserRequest, User} from "../../modules/user/model/user";
-import {Subject, takeUntil} from "rxjs";
+import {Observable, Subject, takeUntil} from "rxjs";
 import {AppState} from "../../root-store/state";
 import {select, Store} from "@ngrx/store";
 import {selectLoginUser} from "../../modules/user/store/selectors";
@@ -20,6 +20,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
 
   items: SideNavSection[] = [];
   user: User | undefined;
+  userAsync$: Observable<User | undefined> = new Observable<User | undefined>();
   selectedGroup: Group | undefined;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
@@ -44,10 +45,30 @@ export class SideNavComponent implements OnInit, OnDestroy {
         name: 'User',
         icon: 'person',
         isHidden: false,
+        callback: () => {
+        },
         sideNavSectionElement: [
-          {name: 'Sign up', icon: 'person-add', url: '/user/add'},
-          {name: 'Log in', icon: 'log-in', url: '/user/login'},
-          {name: 'Log out', icon: 'log-out', url: '/user/logout'},
+          {
+            name: 'Sign up',
+            icon: 'person-add',
+            url: '/user/add',
+            callback: () => {
+            }
+          },
+          {
+            name: 'Log in',
+            icon: 'log-in',
+            url: '/user/login',
+            callback: () => {
+            }
+          },
+          {
+            name: 'Log out', icon: 'log-out', url: '/user/logout',
+            callback: () => {
+              console.log(this.user);
+              this.store$.dispatch(UserActions.logoutUser());
+            }
+          },
         ]
       })
       this.addItem({
@@ -55,6 +76,8 @@ export class SideNavComponent implements OnInit, OnDestroy {
         name: 'Group',
         icon: 'people-circle',
         isHidden: false,
+        callback: () => {
+        },
         sideNavSectionElement: [
           {name: 'Add group', icon: 'people', url: '/group/add'},
           {name: 'User\'s groups', icon: 'people', url: '/group/user-groups'},
@@ -74,6 +97,12 @@ export class SideNavComponent implements OnInit, OnDestroy {
         this.selectedGroup = value;
       }
     });
+    this.userAsync$ = this.store$.select(selectLoginUser);
+    this.userAsync$.subscribe(value => {
+      if (value === undefined) {
+        this.router.navigateByUrl('user/login');
+      }
+    })
     this.store$.pipe(select(selectLoginUser)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {
       if (value) {
         if (value.uuid !== this.user?.uuid) {
@@ -84,9 +113,6 @@ export class SideNavComponent implements OnInit, OnDestroy {
     })
   }
 
-  logout() {
-    this.store$.dispatch(UserActions.logoutUser());
-  }
 
   addItem(sideNavSelection: SideNavSection): void {
     this.items.forEach(value => {
@@ -103,9 +129,19 @@ export class SideNavComponent implements OnInit, OnDestroy {
       name: 'Player',
       icon: 'accessibility',
       isHidden: false,
+      callback: () => {
+      },
       sideNavSectionElement: [
-        {name: 'Add player', icon: 'person-add', url: '/player/add'},
-        {name: 'Group players list', icon: 'person-add', url: '/player/players-list'},
+        {
+          name: 'Add player', icon: 'person-add', url: '/player/add',
+          callback: () => {
+          }
+        },
+        {
+          name: 'Group players list', icon: 'person-add', url: '/player/players-list',
+          callback: () => {
+          }
+        },
       ]
     })
     this.addItem({
@@ -113,9 +149,19 @@ export class SideNavComponent implements OnInit, OnDestroy {
       name: 'Team',
       icon: 'accessibility',
       isHidden: false,
+      callback: () => {
+      },
       sideNavSectionElement: [
-        {name: 'Add team', icon: 'person-add', url: '/team/add'},
-        {name: 'Group teams list', icon: 'people', url: '/team/teams-list'},
+        {
+          name: 'Add team', icon: 'person-add', url: '/team/add',
+          callback: () => {
+          }
+        },
+        {
+          name: 'Group teams list', icon: 'people', url: '/team/teams-list',
+          callback: () => {
+          }
+        },
       ]
     }),
       this.addItem({
@@ -123,10 +169,24 @@ export class SideNavComponent implements OnInit, OnDestroy {
         name: 'Match',
         icon: 'accessibility',
         isHidden: false,
+        callback: () => {
+        },
         sideNavSectionElement: [
-          {name: 'Add match', icon: 'person-add', url: '/match/add'},
-          {name: 'Match', icon: 'person-add', url: '/match/in-progress'},
-          {name: 'Group list', icon: 'person-add', url: '/match/group-list'},
+          {
+            name: 'Add match', icon: 'person-add', url: '/match/add',
+            callback: () => {
+            }
+          },
+          {
+            name: 'Match', icon: 'person-add', url: '/match/in-progress',
+            callback: () => {
+            }
+          },
+          {
+            name: 'Group list', icon: 'person-add', url: '/match/group-list',
+            callback: () => {
+            }
+          },
         ]
       })
   }
@@ -134,4 +194,14 @@ export class SideNavComponent implements OnInit, OnDestroy {
   changeLanguage() {
     this.store$.dispatch(SharedActions.changeLanguage({language: 'sr'}))
   }
+
+  theme($event: MouseEvent) {
+    if (document.body.getAttribute('color-theme') === 'dark') {
+      document.body.setAttribute('color-theme', 'light');
+    } else {
+      document.body.setAttribute('color-theme', 'dark');
+    }
+  }
+
+
 }

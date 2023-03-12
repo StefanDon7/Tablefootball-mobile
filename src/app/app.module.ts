@@ -12,7 +12,7 @@ import {StoreModule} from "@ngrx/store";
 import {reducers} from "./root-store/reducers";
 import {EffectsModule} from "@ngrx/effects";
 import {UserApiService} from "./modules/user/api/user-api-service";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {environment} from "../environments/environment";
 import {GroupApiService} from "./modules/group/api/group-api-service";
@@ -29,29 +29,30 @@ import {TranslatePipe} from "./shared/pipe/translate-pipe";
       LoadingSpinnerComponent,
       TranslatePipe
     ],
-  imports:
-    [
-      BrowserModule,
-      ReactiveFormsModule,
-      IonicModule.forRoot(),
-      AppRoutingModule,
-      HttpClientModule,
-      TranslateModule.forRoot({
-        loader: {
-          provide: TranslateLoader,
-          useFactory: (http: HttpClient) => {
-            return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-          },
-          deps: [HttpClient]
-        }
-      }),
-      StoreModule.forRoot(reducers),
-      StoreDevtoolsModule.instrument({
-        maxAge: 25, // Retains last 25 states
-        logOnly: environment.production, // Restrict extension to log-only mode
-      }),
-      EffectsModule.forRoot([]),
-    ],
+    imports:
+        [
+            BrowserModule,
+            ReactiveFormsModule,
+            IonicModule.forRoot(),
+            AppRoutingModule,
+            HttpClientModule,
+            TranslateModule.forRoot({
+                loader: {
+                    provide: TranslateLoader,
+                    useFactory: (http: HttpClient) => {
+                        return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+                    },
+                    deps: [HttpClient]
+                }
+            }),
+            StoreModule.forRoot(reducers),
+            StoreDevtoolsModule.instrument({
+                maxAge: 25, // Retains last 25 states
+                logOnly: environment.production, // Restrict extension to log-only mode
+            }),
+            EffectsModule.forRoot([]),
+            FormsModule,
+        ],
   exports: [
     ReactiveFormsModule, TranslatePipe
   ],

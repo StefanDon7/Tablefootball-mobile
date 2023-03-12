@@ -14,6 +14,7 @@ import {UserEffects} from "./store/effect";
 import {StoreModule} from "@ngrx/store";
 import {reducers} from "./store/reducer";
 import {TranslateModule} from "@ngx-translate/core";
+import {LogoutUserComponent} from "./component/logout-user/logout-user.component";
 
 @NgModule({
   imports:
@@ -32,6 +33,7 @@ import {TranslateModule} from "@ngx-translate/core";
       UserPage,
       AddUserComponent,
       LoginUserComponent,
+      LogoutUserComponent
     ]
 })
 export class UserPageModule {

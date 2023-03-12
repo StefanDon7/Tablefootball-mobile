@@ -36,6 +36,7 @@ export class LoginUserComponent implements OnInit {
   ngOnInit() {
     this.actions$.pipe(ofType(UserActions.loginUserSuccess)).pipe(take(1)).subscribe(action => {
       if (action) {
+        this.form.reset();
         this.router.navigateByUrl('/group/user-groups');
       }
     });
