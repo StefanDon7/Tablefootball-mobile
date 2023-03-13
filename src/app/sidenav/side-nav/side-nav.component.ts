@@ -100,7 +100,7 @@ export class SideNavComponent implements OnInit, OnDestroy {
     this.userAsync$ = this.store$.select(selectLoginUser);
     this.userAsync$.subscribe(value => {
       if (value === undefined) {
-        this.router.navigateByUrl('user/login');
+        // this.router.navigateByUrl('user/login');
       }
     })
     this.store$.pipe(select(selectLoginUser)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => {

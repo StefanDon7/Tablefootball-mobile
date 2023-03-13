@@ -17,4 +17,4 @@ RUN npm install
 COPY . .
 
 # pokreni Ionic aplikaciju
-CMD ["ionic", "serve"]
+CMD ["ionic", "serve","--host", "0.0.0.0"]
